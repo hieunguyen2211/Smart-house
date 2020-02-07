@@ -1,0 +1,21 @@
+.temperature-container {
+    color: white;
+}
+
+.temperature-container .condition {
+    width: fit-content;
+    margin: 0;
+    font-size: 200%;
+}
+
+.temperature-container .address {
+    width: fit-content;
+    margin: 0;
+}
+
+.temperature-container .degree {
+    width: fit-content;
+    margin: 0;
+    font-size: 250%;
+    font-weight: bold;
+}

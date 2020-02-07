@@ -1,0 +1,15 @@
+.card-item-container {
+    background-color: white;
+    width: 25%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+}
+
+.card-item-content-icon {
+    color: black;
+    height: 60px;
+    padding: 10px;
+}

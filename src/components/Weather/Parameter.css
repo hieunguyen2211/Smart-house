@@ -1,0 +1,28 @@
+.weather-item-container {
+    display: flex;
+    width: 30%;
+    color: white;
+}
+
+.weather-item-container .icon {
+    font-size: 18px;
+    padding: 4px 10px 10px 10px;
+}
+
+.weather-item-container .icon-fixed {
+    font-size: 18px;
+    padding: 4px 16px 10px 10px;
+}
+
+.weather-item-container .title {
+    margin-bottom: 0;
+    font-size: 80%;
+    width: fit-content;
+}
+
+.weather-item-container .detail {
+    margin-bottom: 0;
+    font-size: 130%;
+    font-weight: bold;
+    width: fit-content;
+}

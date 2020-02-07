@@ -1,0 +1,25 @@
+.navigation-item-container {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-item-container-active {
+    background-color: orange;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-item-icon {
+    color: black !important;
+    font-size: 40px;
+    padding: 10px;
+}
+
+.navigation-item-icon-active {
+    color: white !important;
+    font-size: 40px;
+    padding: 10px;
+}
