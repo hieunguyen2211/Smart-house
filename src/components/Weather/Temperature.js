@@ -1,11 +1,10 @@
 import React from 'react';
-import { Icon } from 'antd';
 import './Temperature.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Temperature(props) {
     return (
         <div className="temperature-container">
-            <div style={{ display: 'flex', marginTop: '50%' }}>
+            <div style={{ display: 'flex' }}>
                 <FontAwesomeIcon
                     icon={props.icon}
                     style={{ fontSize: '40px' }}

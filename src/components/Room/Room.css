@@ -1,0 +1,81 @@
+.room-image-container {
+    position: relative;
+}
+
+.room-image-content {
+    max-width: 100%;
+    height: 370px;
+}
+
+.room-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.scrolling-wrapper {
+    width: 88%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    align-self: center;
+
+}
+
+.scrolling-wrapper .card-device-off {
+    display: inline-block;
+    background: white;
+    border-radius: 5%;
+    margin-right: 5%;
+    width: 47%;
+    padding: 3% 0;
+}
+
+.scrolling-wrapper .card-device-on {
+    display: inline-block;
+    border-radius: 5%;
+    margin-right: 5%;
+    background: linear-gradient(-180deg, #f53d2d, #f63);
+    width: 47%;
+    padding: 3% 0;
+}
+
+.card-device-on span {
+    color: white;
+}
+
+.card-device-off span {
+    color: #f63;
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.device-status-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 88%;
+}
+
+.dot-on {
+    height: 2vh;
+    width: 2vh;
+    background-color: #09e801;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-off {
+    height: 2vh;
+    width: 2vh;
+    background-color: #f53d2d;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: inline-block;
+}

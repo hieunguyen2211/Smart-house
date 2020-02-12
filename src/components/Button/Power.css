@@ -1,0 +1,17 @@
+.power-button-wrapper-off {
+    background: radial-gradient(circle, rgba(255, 82, 2, 1) 18%, rgba(196, 62, 0, 1) 58%, rgba(135, 43, 0, 1) 100%);
+    border-radius: 50%;
+    margin: 15% 0;
+    width: fit-content;
+    padding: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.power-button-wrapper-on {
+    background: radial-gradient(circle, rgba(0, 218, 3, 1) 18%, rgba(0, 176, 2, 1) 58%, rgba(0, 126, 1, 1) 100%);
+    margin: 15% 0;
+    width: fit-content;
+    padding: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 50%;
+}

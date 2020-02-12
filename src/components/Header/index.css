@@ -1,15 +1,13 @@
-.parameters-header-title {
+.header-title {
     position: relative;
 }
 
-.parameters-header-title-image {
+.header-title-image {
     max-width: 100%;
     height: auto;
 }
 
-
-
-.parameters-header-title-image-overlay {
+.header-title-image-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,7 +16,7 @@
     background: rgba(0, 0, 0, 0.3);
 }
 
-.parameters-header-title-image-overlay .container {
+.container-weather {
     display: flex;
     justify-content: space-between;
     margin-left: 6%;
@@ -31,4 +29,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     margin-right: 10%;
+}
+
+.container-weather .temperature {
+    display: flex;
+    align-items: center;
 }

@@ -1,0 +1,25 @@
+.control-header-content {
+    width: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2% 0;
+}
+
+.control-header-content .icon {
+    font-size: 25px;
+}
+
+
+.control-header-content span {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.control-header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-180deg, #f53d2d, #f63);
+}

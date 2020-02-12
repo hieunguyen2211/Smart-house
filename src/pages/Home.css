@@ -1,6 +1,6 @@
-.page-home-container {
+.page-container {
     text-align: center;
-    background: #dedede;
+    background: #e9ebee;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

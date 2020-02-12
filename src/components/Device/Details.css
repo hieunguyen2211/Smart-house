@@ -1,0 +1,87 @@
+.device-details-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 65vh;
+}
+
+.device-details-container .device-primary-details {
+    display: flex;
+    justify-content: space-around;
+    width: 88%;
+}
+
+.device-params-container {
+    width: 50%;
+}
+
+.device-detail-icon-params {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.device-detail-icon-params img {
+    width: 5vh;
+}
+
+.device-params-container h2 {
+    color: grey;
+    margin: 0;
+}
+
+.device-params-container h3 {
+    color: grey;
+    margin: 0;
+}
+
+.device-detail-content-container {
+    width: 88%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.device-power-button {
+    text-transform: uppercase;
+    border: 1px solid #f53d2d;
+    border-radius: 100vh;
+    width: 25vh;
+    padding: 2vh 0;
+    color: white;
+    background: linear-gradient(-180deg, #f53d2d, #f63);
+    font-weight: bold;
+    font-size: 3vh;
+}
+
+.progress-position {
+    bottom: 15vh;
+}
+
+.device-detail-circle-progress-content {
+    position: absolute;
+    border-radius: 100%;
+    width: 22vh;
+    height: 22vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+    flex-direction: column;
+}
+
+.device-detail-content-container .ant-progress-inner {
+    width: 30vh !important;
+    height: 30vh !important;
+}
+
+.device-detail-circle-progress-content p {
+    margin: 0;
+    font-size: 5vh;
+    font-weight: bold;
+}

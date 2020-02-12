@@ -1,0 +1,33 @@
+.cardRec-row-content {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardRec-row-content-first-icon {
+    padding: 25px 30px 25px 25px;
+    font-size: 20px;
+}
+
+.cardRec-row-title {
+    display: flex;
+    width: 100%;
+}
+
+.cardRec-row-title span {
+    font-size: 18px;
+    color: black;
+}
+
+.cardRec-row-content-fill {
+    background-color: #ffbb30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardRec-row-content-last-icon {
+    padding: 25px;
+    font-size: 15px;
+}
