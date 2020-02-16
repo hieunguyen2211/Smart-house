@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as iconAI from 'react-icons/ai';
 import * as iconFA from 'react-icons/fa';
+import * as iconMD from 'react-icons/md';
 import './NavigationItem.css';
 
 function NavigationItem(props) {

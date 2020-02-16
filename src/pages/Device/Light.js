@@ -27,90 +27,91 @@ function Light(props) {
         process.env.PUBLIC_URL + '/icons/devices/LightActive.svg';
     return (
         <div className="page-container">
-            <div>
-                <ControlHeader title={props.roomName} path="/rooms" />
+            <ControlHeader title={props.roomName} path="/rooms" />
+            <div className="room-content-container">
                 <DeviceDetails device="light" deviceStatus="active" />
-            </div>
-            <div className="scrolling-wrapper">
-                <Link to="/rooms/bedroom">
-                    <div className="card-device-off" id="1">
-                        <div className="device-status-container">
-                            <span className="dot-off"></span>
-                        </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}
-                        >
-                            <img
-                                src={AirConditionerActive}
-                                className="card-item-content-icon"
-                                alt="icon"
+                <div className="scrolling-wrapper">
+                    <Link to="/rooms/bedroom">
+                        <div className="card-device-off" id="1">
+                            <div className="device-status-container">
+                                <span className="dot-off"></span>
+                            </div>
+                            <div
                                 style={{
-                                    height: '40px',
-                                    marginBottom: '0'
+                                    display: 'flex',
+                                    flexDirection: 'column'
                                 }}
-                            />
-                            <span>Air conditioner</span>
+                            >
+                                <img
+                                    src={AirConditionerActive}
+                                    className="card-item-content-icon"
+                                    alt="icon"
+                                    style={{
+                                        height: '40px',
+                                        marginBottom: '0'
+                                    }}
+                                />
+                                <span>Air conditioner</span>
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
 
-                {deviceData.map(e => {
-                    return props.typeDevice === e.name ? (
-                        <Link to={`/rooms/bedroom/${e.name}`}>
-                            <div className="card-device-on" id={e.id}>
-                                <div className="device-status-container">
-                                    <span className="dot-on"></span>
-                                </div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column'
-                                    }}
-                                >
-                                    <img
-                                        src={LightDisable}
-                                        className="card-item-content-icon"
-                                        alt="icon"
+                    {deviceData.map(e => {
+                        return props.typeDevice === e.name ? (
+                            <Link to={`/rooms/bedroom/${e.name}`}>
+                                <div className="card-device-on" id={e.id}>
+                                    <div className="device-status-container">
+                                        <span className="dot-on"></span>
+                                    </div>
+                                    <div
                                         style={{
-                                            height: '40px',
-                                            marginBottom: '0'
+                                            display: 'flex',
+                                            flexDirection: 'column'
                                         }}
-                                    />
-                                    <span>{e.name}</span>
+                                    >
+                                        <img
+                                            src={LightDisable}
+                                            className="card-item-content-icon"
+                                            alt="icon"
+                                            style={{
+                                                height: '40px',
+                                                marginBottom: '0'
+                                            }}
+                                        />
+                                        <span>{e.name}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                    ) : (
-                        <Link to={`/rooms/bedroom/${e.name}`}>
-                            <div className="card-device-off" id={e.id}>
-                                <div className="device-status-container">
-                                    <span className="dot-off"></span>
-                                </div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column'
-                                    }}
-                                >
-                                    <img
-                                        src={LightActive}
-                                        className="card-item-content-icon"
-                                        alt="icon"
+                            </Link>
+                        ) : (
+                            <Link to={`/rooms/bedroom/${e.name}`}>
+                                <div className="card-device-off" id={e.id}>
+                                    <div className="device-status-container">
+                                        <span className="dot-off"></span>
+                                    </div>
+                                    <div
                                         style={{
-                                            height: '40px',
-                                            marginBottom: '0'
+                                            display: 'flex',
+                                            flexDirection: 'column'
                                         }}
-                                    />
-                                    <span>{e.name}</span>
+                                    >
+                                        <img
+                                            src={LightActive}
+                                            className="card-item-content-icon"
+                                            alt="icon"
+                                            style={{
+                                                height: '40px',
+                                                marginBottom: '0'
+                                            }}
+                                        />
+                                        <span>{e.name}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                    );
-                })}
+                            </Link>
+                        );
+                    })}
+                </div>
             </div>
+
             <NavigationBar />
         </div>
     );

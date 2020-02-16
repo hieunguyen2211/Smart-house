@@ -1,0 +1,80 @@
+.card-profile {
+    width: 88vw;
+    background: transparent !important;
+    margin-bottom: 5vh;
+}
+
+.profile-avatar {
+    width: 18vw;
+    border-radius: 50%;
+    margin-right: 4vw;
+}
+
+.profile-edit-icon {
+    font-size: 3vh;
+    color: white !important;
+    padding: 2vw;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 1vw;
+}
+
+.profile-subtitle {
+    font-size: 4vw;
+    color: white;
+}
+
+.profile-title {
+    font-size: 5vw;
+    color: white;
+    font-weight: bold;
+}
+
+.profile-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 25vh;
+    height: 65vh;
+    width: 100%;
+}
+
+.mode-mini-card {
+    display: inline-block;
+    border: none;
+    margin-right: 5vw;
+
+}
+
+.mode-icon-wrapper {
+    padding: 5vw 6vw;
+    border-radius: 1vw;
+}
+
+.mode-active {
+    background: #f63;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+}
+
+.mode-disabled {
+    background: white;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+}
+
+.mode-icon {
+    width: 10vw;
+}
+
+.mode-title {
+    font-size: 3vw;
+    font-weight: bold;
+    padding-top: 1vh;
+}

@@ -1,0 +1,50 @@
+.profile-detail {
+    height: 35vh !important;
+}
+
+.avatar-full {
+    width: 35vw !important;
+    margin: 0 !important;
+    position: relative;
+}
+
+.header-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-detail-content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 35vh;
+    height: 53vh;
+    width: 100%;
+    background: white;
+}
+
+.profile-detail-content {
+    height: 100%;
+    width: 88vw;
+}
+
+.profile-detail-content label {
+    text-transform: capitalize !important;
+}
+
+.avatar-change-btn {
+    width: 6vh;
+    background: #011d78;
+    height: 6vh;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 32vw;
+    bottom: 5vh;
+}

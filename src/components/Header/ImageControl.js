@@ -1,17 +1,6 @@
 import React from 'react';
-import ProfileCard from '../Profile/Profile';
 import ControlHeader from './Control';
 function Profile(props) {
-    const cardInside = props.cardInside && (
-        <div>
-            <ProfileCard
-                style={{
-                    top: '80%',
-                    left: '6%'
-                }}
-            />
-        </div>
-    );
     return (
         <div>
             <ControlHeader

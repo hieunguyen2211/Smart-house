@@ -4,7 +4,8 @@
     flex-direction: column;
     align-items: center;
     background-color: white;
-    height: 65vh;
+    height: 64vh;
+    width: 100%;
 }
 
 .device-details-container .device-primary-details {
@@ -84,4 +85,10 @@
     margin: 0;
     font-size: 5vh;
     font-weight: bold;
+}
+
+.device-params-container p {
+    margin: 0;
+    font-size: 5vw;
+    color: grey;
 }

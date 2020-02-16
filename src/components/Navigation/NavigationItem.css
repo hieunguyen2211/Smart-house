@@ -5,23 +5,17 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 2%;
 }
 
 .navigation-item-icon-disable {
     color: black !important;
-    font-size: 30px;
+    font-size: 7vw;
 }
 
 .navigation-item-icon-active {
     color: #f63 !important;
-    font-size: 30px;
+    font-size: 7vw;
 }
-
-.navigation-item-container p {
-    margin: 0
-}
-
 
 .navigation-item-title-active {
     color: #f63;

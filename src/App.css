@@ -1,0 +1,65 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+p {
+    margin: 0 !important;
+}
+
+.ant-switch-checked {
+    background-color: #f63 !important;
+}
+
+.ant-select-selection:hover {
+    border-color: #f63 !important;
+    box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
+}
+
+.ant-select-selection:focus {
+    border-color: #f63 !important;
+    box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
+}
+
+.ant-select-selection:active {
+    border-color: #f63 !important;
+    box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
+}
+
+.ant-input:focus {
+    box-shadow: none !important;
+}
+
+.ant-calendar-picker-input {
+    font-size: 3vh !important;
+    border: none !important;
+    padding: 0 !important;
+    color: black !important;
+    border-bottom: 1px solid #f63 !important;
+}
+
+.page-container {
+    text-align: center;
+    background: #e9ebee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-content-wrapper {
+    position: fixed;
+    width: 100%;
+    top: 6vh;
+    height: 84vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex-box {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}

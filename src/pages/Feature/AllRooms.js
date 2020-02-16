@@ -2,7 +2,7 @@ import React from 'react';
 import ControlHeader from '../../components/Header/Control';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import MenuSquare from '../../components/Menu/MenuSquare';
-
+import './AllRooms.css';
 const data = [
     {
         rowData: [
@@ -59,16 +59,12 @@ const data = [
 function AllRooms() {
     return (
         <div className="page-container">
-            <div style={{ position: 'relative' }}>
-                <ControlHeader title="all rooms" path="/" />
-                <br /> <br />
+            <ControlHeader title="rooms" path="/home" />
+            <div className="page-content-wrapper">
                 <MenuSquare data={data} subTitle={true} />
             </div>
 
-            <div></div>
-            <div>
-                <NavigationBar />
-            </div>
+            <NavigationBar />
         </div>
     );
 }

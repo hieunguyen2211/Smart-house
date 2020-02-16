@@ -23,25 +23,32 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     align-self: center;
-
+    display: flex;
+    justify-content: space-between
 }
 
 .scrolling-wrapper .card-device-off {
-    display: inline-block;
+    border-radius: 3%;
     background: white;
-    border-radius: 5%;
-    margin-right: 5%;
-    width: 47%;
-    padding: 3% 0;
+    height: 14vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6vw;
 }
 
 .scrolling-wrapper .card-device-on {
-    display: inline-block;
-    border-radius: 5%;
-    margin-right: 5%;
+    border-radius: 3%;
     background: linear-gradient(-180deg, #f53d2d, #f63);
-    width: 47%;
-    padding: 3% 0;
+    height: 14vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6vw;
 }
 
 .card-device-on span {
@@ -78,4 +85,15 @@
     border: 2px solid white;
     border-radius: 50%;
     display: inline-block;
+}
+
+.room-content-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    top: 6vh;
+    height: 81vh;
+    justify-content: space-between;
+    align-items: center;
 }

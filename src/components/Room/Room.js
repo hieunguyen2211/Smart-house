@@ -26,49 +26,21 @@ function Room(props) {
         process.env.PUBLIC_URL + '/icons/devices/LightActive.svg';
     return (
         <div className="page-container">
-            <div>
-                <ControlHeader
-                    title={props.roomName}
-                    path="/"
-                    colorText="white"
-                    imageUrl="/images/rooms/bedroom.jpg"
-                />
+            <ControlHeader
+                title={props.roomName}
+                path="/home"
+                colorText="white"
+                imageUrl="/images/rooms/bedroom.jpg"
+            />
+            <div className="room-content-container">
                 <DeviceDetails device="airConditioner" deviceStatus="disable" />
-            </div>
-
-            <div className="scrolling-wrapper">
-                <Link to="/rooms/bedroom">
-                    <div className="card-device-on" id="1">
-                        <div className="device-status-container">
-                            <span className="dot-off"></span>
-                        </div>
-
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}
-                        >
-                            <img
-                                src={AirConditionerDisable}
-                                className="card-item-content-icon"
-                                alt="icon"
-                                style={{
-                                    height: '40px',
-                                    marginBottom: '0'
-                                }}
-                            />
-                            <span>Air conditioner</span>
-                        </div>
-                    </div>
-                </Link>
-
-                {deviceData.map(e => (
-                    <Link to={`/rooms/bedroom/${e.name}`}>
-                        <div className="card-device-off" id={e.id}>
+                <div className="scrolling-wrapper">
+                    <Link to="/rooms/bedroom">
+                        <div className="card-device-on" id="1">
                             <div className="device-status-container">
-                                <span className="dot-on"></span>
+                                <span className="dot-off"></span>
                             </div>
+
                             <div
                                 style={{
                                     display: 'flex',
@@ -76,7 +48,7 @@ function Room(props) {
                                 }}
                             >
                                 <img
-                                    src={LightActive}
+                                    src={AirConditionerDisable}
                                     className="card-item-content-icon"
                                     alt="icon"
                                     style={{
@@ -84,12 +56,40 @@ function Room(props) {
                                         marginBottom: '0'
                                     }}
                                 />
-                                <span>{e.name}</span>
+                                <span>Air conditioner</span>
                             </div>
                         </div>
                     </Link>
-                ))}
+
+                    {deviceData.map(e => (
+                        <Link to={`/rooms/bedroom/${e.name}`}>
+                            <div className="card-device-off" id={e.id}>
+                                <div className="device-status-container">
+                                    <span className="dot-on"></span>
+                                </div>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column'
+                                    }}
+                                >
+                                    <img
+                                        src={LightActive}
+                                        className="card-item-content-icon"
+                                        alt="icon"
+                                        style={{
+                                            height: '40px',
+                                            marginBottom: '0'
+                                        }}
+                                    />
+                                    <span>{e.name}</span>
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </div>
+
             <NavigationBar />
         </div>
     );

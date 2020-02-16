@@ -1,20 +1,27 @@
 import React from 'react';
-import { Icon } from 'antd';
 import './CardRec.css';
 function CardRec(props) {
-    const cardClassName = props.fill
-        ? 'cardRec-row-content-fill'
-        : 'cardRec-row-content';
+    const { id } = props;
+    const cardClassName =
+        id !== 1
+            ? id === props.sizeData
+                ? 'cardRec-content cardRec-last'
+                : 'cardRec-content cardRec'
+            : 'cardRec-content cardRec-first';
     return (
         <div className={cardClassName}>
-            <Icon
-                className="cardRec-row-content-first-icon"
-                type={props.icon}
+            <img
+                src={props.iconURL}
+                alt="cardRec-icon"
+                style={props.iconStyle}
             />
-            <div className="cardRec-row-title">
-                <span>{props.title}</span>
+            <div className="cardRec-title-wrapper">
+                <p className="cardRec-title">{props.title}</p>
+                {props.subTitle && (
+                    <p className="cardRec-subTitle">{props.subTitle}</p>
+                )}
             </div>
-            <Icon className="cardRec-row-content-last-icon" type="right" />
+            {props.subComponent}
         </div>
     );
 }

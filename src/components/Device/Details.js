@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import PowerButton from '../Button/Power';
 import { Icon } from 'antd';
 import { Progress } from 'antd';
+import ParametersDetails from './Parameters';
 import './Details.css';
 function Details(props) {
     const [degree, setDegree] = useState(20);
@@ -9,20 +9,26 @@ function Details(props) {
     let circleProgressContent = '';
     let circleProgressPercent = '';
     let deviceParams = '';
+    const deviceData = [
+        {
+            name: 'airConditioner',
+            data: [
+                { title: 'Temperature', value: '30 °C' },
+                { title: 'Humidity', value: '0.8 %' }
+            ]
+        },
+        {
+            name: 'light',
+            data: [
+                { title: 'Total Working', value: '12.5 Hrs' },
+                { title: 'Maximum Power', value: '80 W' }
+            ]
+        }
+    ];
+
     switch (props.device) {
         case 'airConditioner':
-            deviceParams = (
-                <div className="device-primary-details">
-                    <div className="device-params-container">
-                        <h3>Temperature</h3>
-                        <h2>30 °C</h2>
-                    </div>
-                    <div className="device-params-container">
-                        <h3>Humidity</h3>
-                        <h2>0.8 %</h2>
-                    </div>
-                </div>
-            );
+            deviceParams = <ParametersDetails data={deviceData[0].data} />;
             circleProgressContent = (
                 <div className="device-detail-circle-progress-content progress-position">
                     <Icon
@@ -45,18 +51,7 @@ function Details(props) {
             circleProgressPercent = (degree / 50) * 100;
             break;
         case 'light':
-            deviceParams = (
-                <div className="device-primary-details">
-                    <div className="device-params-container">
-                        <h3>Total Working Hrs</h3>
-                        <h2>12.5</h2>
-                    </div>
-                    <div className="device-params-container">
-                        <h3>Maximum Power</h3>
-                        <h2>80 W</h2>
-                    </div>
-                </div>
-            );
+            deviceParams = <ParametersDetails data={deviceData[1].data} />;
             circleProgressContent = (
                 <div className="device-detail-circle-progress-content progress-position">
                     <p style={{ color: '#f53d2d' }}>01:28</p>
