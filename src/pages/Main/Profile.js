@@ -61,55 +61,49 @@ export default function Profile() {
         {
             id: 1,
             title: 'Off Energy',
-            iconURL: {
-                active:
+            icon: {
+                selected:
                     process.env.PUBLIC_URL +
                     '/icons/modes/active/offPowerActive.svg',
-                disabled:
+                unselected:
                     process.env.PUBLIC_URL +
                     '/icons/modes/disabled/offPowerDisabled.svg'
             },
-            active: true
+            selected: true
         },
         {
             id: 2,
             title: 'Left Home',
-            iconURL: {
-                active:
+            icon: {
+                selected:
                     process.env.PUBLIC_URL +
                     '/icons/modes/active/leftHomeActive.svg',
-                disabled:
+                unselected:
                     process.env.PUBLIC_URL +
                     '/icons/modes/disabled/leftHomeDisabled.svg'
             },
-            active: false
+            selected: false
         },
         {
             id: 3,
             title: 'Came Home',
-            iconURL: {
-                active:
+            icon: {
+                selected:
                     process.env.PUBLIC_URL +
                     '/icons/modes/active/cameHomeActive.svg',
-                disabled:
+                unselected:
                     process.env.PUBLIC_URL +
                     '/icons/modes/disabled/cameHomeDisabled.svg'
             },
-            active: false
+            selected: false
         }
     ]);
 
     const handleSelectMode = id => {
-        // let a = modes;
-        // a.forEach(e => {
-        //     if (e.id === id) e.active = true;
-        //     else if (e.active === true) e.active = false;
-        // });
-        // console.log(a);
         setModes(modes =>
             modes.map(e => {
-                if (e.id === id) e.active = true;
-                else if (e.active === true) e.active = false;
+                if (e.id === id) e.selected = true;
+                else if (e.selected === true) e.selected = false;
                 return e;
             })
         );
@@ -167,39 +161,35 @@ export default function Profile() {
             </div>
             <div className="profile-content-wrapper">
                 <div className="scrolling-wrapper">
-                    {modes.map(e =>
-                        e.active ? (
-                            <div className="mode-mini-card" id={e.id}>
-                                <div className="mode-icon-wrapper mode-active">
-                                    <img
-                                        src={e.iconURL.active}
-                                        alt="mode-icon"
-                                        className="mode-icon"
-                                    />
-                                </div>
-                                <p className="mode-title">{e.title}</p>
-                            </div>
-                        ) : (
+                    {modes.map(e => (
+                        <div
+                            className="mode-mini-card"
+                            key={e.id}
+                            onClick={() => handleSelectMode(e.id)}
+                        >
                             <div
-                                className="mode-mini-card"
-                                id={e.id}
-                                onClick={() => handleSelectMode(e.id)}
+                                className={
+                                    e.selected
+                                        ? 'mode-icon-wrapper mode-active'
+                                        : 'mode-icon-wrapper mode-disabled'
+                                }
                             >
-                                <div className="mode-icon-wrapper mode-disabled">
-                                    <img
-                                        src={e.iconURL.disabled}
-                                        alt="mode-icon"
-                                        className="mode-icon"
-                                    />
-                                </div>
-                                <p className="mode-title">{e.title}</p>
+                                <img
+                                    src={
+                                        e.selected
+                                            ? e.icon.selected
+                                            : e.icon.unselected
+                                    }
+                                    alt="mode-icon"
+                                    className="mode-icon"
+                                />
                             </div>
-                        )
-                    )}
+                            <p className="mode-title">{e.title}</p>
+                        </div>
+                    ))}
                 </div>
                 <MenuRec data={data} />
             </div>
-
             <NavigationBar />
         </div>
     );

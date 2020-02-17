@@ -4,31 +4,15 @@ import { Progress } from 'antd';
 import ParametersDetails from './Parameters';
 import './Details.css';
 function Details(props) {
-    const [degree, setDegree] = useState(20);
-    const titleButtonPower = props.deviceStatus === 'active' ? 'off' : 'on';
+    const [degree, setDegree] = useState(props.value);
+    const titleButtonPower = props.status ? 'on' : 'off';
     let circleProgressContent = '';
     let circleProgressPercent = '';
     let deviceParams = '';
-    const deviceData = [
-        {
-            name: 'airConditioner',
-            data: [
-                { title: 'Temperature', value: '30 °C' },
-                { title: 'Humidity', value: '0.8 %' }
-            ]
-        },
-        {
-            name: 'light',
-            data: [
-                { title: 'Total Working', value: '12.5 Hrs' },
-                { title: 'Maximum Power', value: '80 W' }
-            ]
-        }
-    ];
 
     switch (props.device) {
-        case 'airConditioner':
-            deviceParams = <ParametersDetails data={deviceData[0].data} />;
+        case 'Air Conditioner':
+            deviceParams = <ParametersDetails data={props.data} />;
             circleProgressContent = (
                 <div className="device-detail-circle-progress-content progress-position">
                     <Icon
@@ -50,8 +34,8 @@ function Details(props) {
             );
             circleProgressPercent = (degree / 50) * 100;
             break;
-        case 'light':
-            deviceParams = <ParametersDetails data={deviceData[1].data} />;
+        case 'Light':
+            deviceParams = <ParametersDetails data={props.data} />;
             circleProgressContent = (
                 <div className="device-detail-circle-progress-content progress-position">
                     <p style={{ color: '#f53d2d' }}>01:28</p>

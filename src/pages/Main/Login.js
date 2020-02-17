@@ -10,13 +10,13 @@ function Login() {
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const {
         value: username,
-        bind: bindUsername,
-        reset: resetUsername
+        bind: bindUsername
+        // reset: resetUsername
     } = useInput('');
     const {
         value: password,
-        bind: bindPassword,
-        reset: resetPassword
+        bind: bindPassword
+        // reset: resetPassword
     } = useInput('');
 
     const handleSubmitLogin = e => {

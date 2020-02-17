@@ -1,92 +1,188 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ControlHeader from '../Header/Control';
 import NavigationBar from '../Navigation/NavigationBar';
-import { Link } from 'react-router-dom';
 import DeviceDetails from '../Device/Details';
 import './Room.css';
 
 function Room(props) {
-    const deviceData = [
+    const urlIconSelected =
+        process.env.PUBLIC_URL + '/icons/devices/content/selected';
+    const urlIconUnselected =
+        process.env.PUBLIC_URL + '/icons/devices/content/unselected';
+
+    const [deviceData, setDeviceData] = useState([
+        {
+            id: 1,
+            name: 'Air Conditioner',
+            icon: {
+                selected: urlIconSelected + '/AirConditioner.svg',
+                unselected: urlIconUnselected + '/AirConditioner.svg'
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Temperature',
+                    value: 30,
+                    unit: '°C'
+                },
+                {
+                    id: 2,
+                    name: 'Humidity',
+                    value: 0.8,
+                    unit: '%'
+                }
+            ],
+            value: 20,
+            status: false,
+            selected: true
+        },
         {
             id: 2,
-            name: 'Light'
+            name: 'Light',
+            icon: {
+                selected: urlIconSelected + '/Light.svg',
+                unselected: urlIconUnselected + '/Light.svg'
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Total working',
+                    value: 12.5,
+                    unit: 'Hrs'
+                },
+                {
+                    id: 2,
+                    name: 'Maximum Power',
+                    value: 80,
+                    unit: 'W'
+                }
+            ],
+            status: true,
+            selected: false
         },
         {
             id: 3,
-            name: 'Demo'
+            name: 'Demo1',
+            icon: {
+                selected: urlIconSelected + '/Light.svg',
+                unselected: urlIconUnselected + '/Light.svg'
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Total working',
+                    value: 12.5
+                },
+                {
+                    id: 2,
+                    name: 'Maximum Power',
+                    value: 80
+                }
+            ],
+            status: true,
+            selected: false
         },
         {
             id: 4,
-            name: 'Demo'
+            name: 'Demo2',
+            icon: {
+                selected: urlIconSelected + '/Light.svg',
+                unselected: urlIconUnselected + '/Light.svg'
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Total working',
+                    value: 12.5
+                },
+                {
+                    id: 2,
+                    name: 'Maximum Power',
+                    value: 80
+                }
+            ],
+            status: true,
+            selected: false
         }
-    ];
-    const AirConditionerDisable =
-        process.env.PUBLIC_URL + '/icons/devices/AirConditionerDisable.svg';
-    const LightActive =
-        process.env.PUBLIC_URL + '/icons/devices/LightActive.svg';
+    ]);
+
+    const handleSelectDevice = id => {
+        setDeviceData(deviceData =>
+            deviceData.map(e => {
+                if (e.id === id) e.selected = true;
+                else if (e.selected === true) e.selected = false;
+                return e;
+            })
+        );
+    };
+
     return (
         <div className="page-container">
             <ControlHeader
                 title={props.roomName}
-                path="/home"
+                path="/rooms"
                 colorText="white"
                 imageUrl="/images/rooms/bedroom.jpg"
             />
             <div className="room-content-container">
-                <DeviceDetails device="airConditioner" deviceStatus="disable" />
+                {deviceData.map(
+                    e =>
+                        e.selected && (
+                            <DeviceDetails
+                                device={e.name}
+                                data={e.data}
+                                value={e.value}
+                                status={e.status}
+                                key={e.id}
+                            />
+                        )
+                )}
                 <div className="scrolling-wrapper">
-                    <Link to="/rooms/bedroom">
-                        <div className="card-device-on" id="1">
-                            <div className="device-status-container">
-                                <span className="dot-off"></span>
-                            </div>
-
+                    {deviceData &&
+                        deviceData.map(e => (
                             <div
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'column'
-                                }}
+                                onClick={() => handleSelectDevice(e.id)}
+                                key={e.id}
                             >
-                                <img
-                                    src={AirConditionerDisable}
-                                    className="card-item-content-icon"
-                                    alt="icon"
-                                    style={{
-                                        height: '40px',
-                                        marginBottom: '0'
-                                    }}
-                                />
-                                <span>Air conditioner</span>
-                            </div>
-                        </div>
-                    </Link>
-
-                    {deviceData.map(e => (
-                        <Link to={`/rooms/bedroom/${e.name}`}>
-                            <div className="card-device-off" id={e.id}>
-                                <div className="device-status-container">
-                                    <span className="dot-on"></span>
-                                </div>
                                 <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column'
-                                    }}
+                                    className={
+                                        e.selected
+                                            ? 'card-device-on'
+                                            : 'card-device-off'
+                                    }
                                 >
-                                    <img
-                                        src={LightActive}
-                                        className="card-item-content-icon"
-                                        alt="icon"
+                                    <div className="device-status-container">
+                                        {e.status ? (
+                                            <span className="dot-on"></span>
+                                        ) : (
+                                            <span className="dot-off"></span>
+                                        )}
+                                    </div>
+
+                                    <div
                                         style={{
-                                            height: '40px',
-                                            marginBottom: '0'
+                                            display: 'flex',
+                                            flexDirection: 'column'
                                         }}
-                                    />
-                                    <span>{e.name}</span>
+                                    >
+                                        <img
+                                            src={
+                                                e.selected
+                                                    ? e.icon.selected
+                                                    : e.icon.unselected
+                                            }
+                                            className="card-item-content-icon"
+                                            alt="icon"
+                                            style={{
+                                                height: '40px',
+                                                marginBottom: '0'
+                                            }}
+                                        />
+                                        <span>{e.name}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </Link>
-                    ))}
+                        ))}
                 </div>
             </div>
 

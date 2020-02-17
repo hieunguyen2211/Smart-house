@@ -19,9 +19,6 @@ import DiningRoom from './pages/Room/DiningRoom';
 import Laundry from './pages/Room/Laundry';
 import Bathroom from './pages/Room/Bathroom';
 
-//Devices
-import LightDevice from './pages/Device/Light';
-
 //Others
 import ProfileDetailPage from './pages/Others/ProfileDetail';
 import ChangePasswordPage from './pages/Others/ChangePassword';
@@ -49,9 +46,6 @@ function App() {
                 {/*----- Bedroom --------*/}
                 <Route path="/rooms/bedroom" exact>
                     <Bedroom />
-                </Route>
-                <Route path="/rooms/bedroom/light" exact>
-                    <LightDevice roomName="bedroom" typeDevice="Light" />
                 </Route>
                 {/*----- Bedroom --------*/}
                 <Route path="/rooms/livingroom" exact>

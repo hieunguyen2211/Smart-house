@@ -54,7 +54,9 @@ function ProfileDetail() {
                 <form className="login-page-form">
                     <div className="login-page-inputs-container profile-detail-content">
                         <div className="login-page-input-wrapper">
-                            <label className="login-page-label">username</label>
+                            <label className="login-page-label">
+                                full name
+                            </label>
                             <input
                                 type="text"
                                 name="username"

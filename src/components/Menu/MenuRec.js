@@ -10,7 +10,7 @@ function MenuRec(props) {
                 {props.data &&
                     props.data.map(e =>
                         e.path ? (
-                            <Link to={e.path}>
+                            <Link to={e.path} key={e.id}>
                                 <CardRec
                                     iconURL={e.icon.url}
                                     iconStyle={e.icon.style}
