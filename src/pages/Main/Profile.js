@@ -161,7 +161,7 @@ export default function Profile() {
                     <div className="cardRec-title-wrapper">
                         <p className="profile-subtitle">Hello</p>
                         <p className="profile-title">
-                            {profileData.data.fullname}
+                            {profileData.data.fullName}
                         </p>
                     </div>
                     <Link to="/profile/detail">

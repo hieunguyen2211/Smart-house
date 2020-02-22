@@ -80,7 +80,7 @@ function ProfileDetail() {
                                 name="fullname"
                                 className="login-page-input"
                                 // {...bindUsername}
-                                value={profileData.data.fullname}
+                                value={profileData.data.fullName}
                             />
                         </div>
                         <div className="login-page-input-wrapper">
@@ -100,7 +100,7 @@ function ProfileDetail() {
                                 name="phone"
                                 className="login-page-input"
                                 // {...bindPassword}
-                                value={profileData.data.phone}
+                                value={profileData.data.phoneNumber}
                             />
                         </div>
                     </div>
