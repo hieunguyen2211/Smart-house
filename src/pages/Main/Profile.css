@@ -2,6 +2,7 @@
     width: 88vw;
     background: transparent !important;
     margin-bottom: 5vh;
+    border-bottom: none;
 }
 
 .profile-avatar {

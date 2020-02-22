@@ -1,61 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProfileRequest } from '../../redux/profile/profileAction';
 import { Icon } from 'antd';
 import { Route, Link } from 'react-router-dom';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import MenuRec from '../../components/Menu/MenuRec';
 import './Profile.css';
+const data = [
+    {
+        id: 1,
+        icon: {
+            url: process.env.PUBLIC_URL + '/icons/main/Profile/house.svg',
+            style: {
+                width: '12vw',
+                margin: '3vw'
+            }
+        },
+        title: 'My home',
+        path: '/rooms'
+    },
+    {
+        id: 2,
+        icon: {
+            url: process.env.PUBLIC_URL + '/icons/main/Profile/profile.svg',
+            style: {
+                width: '12vw',
+                margin: '3vw'
+            }
+        },
+        title: 'My profile',
+        path: '/profile/detail'
+    },
+    {
+        id: 3,
+        icon: {
+            url: process.env.PUBLIC_URL + '/icons/main/Profile/password.svg',
+            style: {
+                width: '12vw',
+                margin: '3vw'
+            }
+        },
+        title: 'Change password',
+        path: '/profile/changePassword'
+    },
+    {
+        id: 4,
+        icon: {
+            url: process.env.PUBLIC_URL + '/icons/main/Profile/signOut.svg',
+            style: {
+                width: '12vw',
+                margin: '3vw'
+            }
+        },
+        title: 'Sign out',
+        path: '/'
+    }
+];
+
 export default function Profile() {
-    const data = [
-        {
-            id: 1,
-            icon: {
-                url: process.env.PUBLIC_URL + '/icons/main/Profile/house.svg',
-                style: {
-                    width: '12vw',
-                    margin: '3vw'
-                }
-            },
-            title: 'My home',
-            path: '/home'
-        },
-        {
-            id: 2,
-            icon: {
-                url: process.env.PUBLIC_URL + '/icons/main/Profile/profile.svg',
-                style: {
-                    width: '12vw',
-                    margin: '3vw'
-                }
-            },
-            title: 'My profile',
-            path: '/profile/detail'
-        },
-        {
-            id: 3,
-            icon: {
-                url:
-                    process.env.PUBLIC_URL + '/icons/main/Profile/password.svg',
-                style: {
-                    width: '12vw',
-                    margin: '3vw'
-                }
-            },
-            title: 'Change password',
-            path: '/profile/changePassword'
-        },
-        {
-            id: 4,
-            icon: {
-                url: process.env.PUBLIC_URL + '/icons/main/Profile/signOut.svg',
-                style: {
-                    width: '12vw',
-                    margin: '3vw'
-                }
-            },
-            title: 'Sign out',
-            path: '/'
-        }
-    ];
+    const profileData = useSelector(state => state.user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProfileRequest());
+    }, [dispatch]);
 
     const [modes, setModes] = useState([
         {
@@ -152,7 +160,9 @@ export default function Profile() {
 
                     <div className="cardRec-title-wrapper">
                         <p className="profile-subtitle">Hello</p>
-                        <p className="profile-title">Thomas Shelby</p>
+                        <p className="profile-title">
+                            {profileData.data.fullname}
+                        </p>
                     </div>
                     <Link to="/profile/detail">
                         <Icon type="edit" className="profile-edit-icon" />

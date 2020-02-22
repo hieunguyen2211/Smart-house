@@ -5,17 +5,19 @@
 .temperature-container .condition {
     width: fit-content;
     margin: 0;
-    font-size: 200%;
+    font-size: 4vh;
 }
 
 .temperature-container .address {
     width: fit-content;
     margin: 0;
+    text-transform: capitalize;
+    font-size: 2vh;
 }
 
 .temperature-container .degree {
     width: fit-content;
     margin: 0;
-    font-size: 250%;
+    font-size: 6vh;
     font-weight: bold;
 }

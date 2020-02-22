@@ -24,8 +24,11 @@ function CardSquare(props) {
     );
     return (
         <Link to={props.path} style={{ width: '41%', height: 'fit-content' }}>
-            <div className="card-item-container">
-                <div style={{ padding: '12px' }}>
+            <div
+                className="card-item-container"
+                style={{ height: props.heightCard }}
+            >
+                <div>
                     <img
                         src={urlIcon}
                         className="card-item-content-icon"

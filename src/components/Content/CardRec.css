@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 2px solid #e9ebee;
 }
 
 .cardRec-icon {
@@ -35,4 +36,5 @@
 .cardRec-last {
     border-bottom-left-radius: 1vw;
     border-bottom-right-radius: 1vw;
+    border-bottom: none;
 }

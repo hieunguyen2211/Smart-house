@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchWeatherRequest } from '../../redux/currentWeather/currentWeatherAction';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import MenuSquare from '../../components/Menu/MenuSquare';
 import HomePageHeader from '../../components/Header/WeatherParameters';
@@ -18,7 +20,7 @@ const data = [
                 id: 2,
                 name: 'Devices',
                 iconUrl: '/main/Home/devices',
-                path: '/home'
+                path: '/devices'
             }
         ]
     },
@@ -29,13 +31,13 @@ const data = [
                 id: 3,
                 name: 'Modes',
                 iconUrl: '/main/Home/modes',
-                path: '/home'
+                path: '/modes'
             },
             {
                 id: 4,
                 name: 'Security',
                 iconUrl: '/main/Home/security',
-                path: '/home'
+                path: '/security'
             }
         ]
     },
@@ -59,11 +61,16 @@ const data = [
 ];
 
 function Home() {
+    const currentWeatherData = useSelector(state => state.currentWeather);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchWeatherRequest());
+    }, [dispatch]);
     return (
         <div className="page-container">
-            <HomePageHeader />
+            <HomePageHeader data={currentWeatherData.currentWeather} />
             <div className="home-menu-wrapper">
-                <MenuSquare data={data} subTitle={false} />
+                <MenuSquare data={data} subTitle={false} heightCard="17vh" />
             </div>
 
             <NavigationBar />

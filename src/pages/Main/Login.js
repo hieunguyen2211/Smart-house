@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginRequest } from '../../redux/authenticate/authenticateAction';
 import { useInput } from '../../assets/hooks/input-hook';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './Login.css';
 function Login() {
     const urlLogo = process.env.PUBLIC_URL + '/logos/filled.svg';
-    const [redirect, setRedirect] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [circleLoading, setCircleLoading] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -18,6 +19,16 @@ function Login() {
         bind: bindPassword
         // reset: resetPassword
     } = useInput('');
+    const authData = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (authData.error) {
+            setShowErrorMessage(true);
+            setCircleLoading(false);
+            setErrorMessage('Username or password is incorrect.');
+        }
+    }, [authData]);
 
     const handleSubmitLogin = e => {
         e.preventDefault();
@@ -32,16 +43,10 @@ function Login() {
                 messenger = 'Username is invalid.';
             }
         } else {
-            if (username === 'admin' && password === '123123') {
-                messenger = '';
-                setTimeout(() => {
-                    setRedirect(true);
-                    setCircleLoading(false);
-                }, 500);
-            } else {
-                //Status 401
-                messenger = 'Username or password is incorrect.';
-            }
+            const body = { username: username, password: password };
+            setTimeout(() => {
+                dispatch(loginRequest(body));
+            }, 500);
         }
         if (messenger !== '') {
             setShowErrorMessage(true);
@@ -51,7 +56,7 @@ function Login() {
     };
 
     const renderRedirect = () => {
-        if (redirect) {
+        if (localStorage.getItem('access_token')) {
             return <Redirect to="/home" />;
         }
     };
@@ -140,15 +145,17 @@ function Login() {
                             </button>
                             <span style={{ fontSize: '2vh' }}>
                                 Don't have an account?
-                                <span
-                                    style={{
-                                        color: '#f63',
-                                        fontWeight: 'bold',
-                                        marginLeft: '1vh'
-                                    }}
-                                >
-                                    Sign up
-                                </span>
+                                <Link to="/register">
+                                    <span
+                                        style={{
+                                            color: '#f63',
+                                            fontWeight: 'bold',
+                                            marginLeft: '1vh'
+                                        }}
+                                    >
+                                        Sign up
+                                    </span>
+                                </Link>
                             </span>
                         </div>
                     </form>

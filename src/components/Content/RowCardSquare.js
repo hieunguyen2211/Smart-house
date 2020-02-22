@@ -9,6 +9,7 @@ function Row(props) {
             key={e.id}
             path={e.path}
             subTitle={props.subTitle}
+            heightCard={props.heightCard}
         />
     ));
     return <div className="row-item-container">{listItem}</div>;

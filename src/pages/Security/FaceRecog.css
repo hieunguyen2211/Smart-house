@@ -1,0 +1,39 @@
+.Canvas {
+    position: absolute;
+    /* left: 19vw;
+    top: 24vh; */
+    left: 12vw;
+    top: 15vh;
+}
+
+@media only screen and (device-width : 414px) and (device-height : 736px) and (-webkit-device-pixel-ratio : 3) {
+    .Canvas {
+        position: absolute;
+        /* left: 19vw;
+            top: 24vh; */
+        left: 18vw;
+        top: 16vh;
+    }
+}
+
+/* 
+.security-btn-wrapper {
+    width: 100%;
+    height: 16vh;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.security-icon-power {
+    background: black;
+    border-radius: 50%;
+    color: white !important;
+    font-size: 20vw;
+    position: absolute;
+    bottom: 6vh;
+    border: 2px solid black;
+}

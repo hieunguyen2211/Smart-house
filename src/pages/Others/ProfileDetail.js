@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProfileRequest } from '../../redux/profile/profileAction';
 import NavigationBar from '../../components/Navigation/NavigationBar';
-import { Icon, DatePicker } from 'antd';
+import { Icon } from 'antd';
 import { FaSave } from 'react-icons/fa';
 import { Route, Link } from 'react-router-dom';
 import './ProfileDetail.css';
-import moment from 'moment';
 function ProfileDetail() {
+    const profileData = useSelector(state => state.user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProfileRequest());
+    }, [dispatch]);
     return (
         <div className="page-container">
             <div className="control-header-container header-profile profile-detail">
@@ -54,15 +61,26 @@ function ProfileDetail() {
                 <form className="login-page-form">
                     <div className="login-page-inputs-container profile-detail-content">
                         <div className="login-page-input-wrapper">
-                            <label className="login-page-label">
-                                full name
-                            </label>
+                            <label className="login-page-label">username</label>
                             <input
                                 type="text"
                                 name="username"
                                 className="login-page-input"
                                 // {...bindUsername}
-                                value="Thomas Shelby"
+                                value={profileData.data.username}
+                                disabled
+                            />
+                        </div>
+                        <div className="login-page-input-wrapper">
+                            <label className="login-page-label">
+                                full name
+                            </label>
+                            <input
+                                type="text"
+                                name="fullname"
+                                className="login-page-input"
+                                // {...bindUsername}
+                                value={profileData.data.fullname}
                             />
                         </div>
                         <div className="login-page-input-wrapper">
@@ -71,7 +89,7 @@ function ProfileDetail() {
                                 type="email"
                                 name="email"
                                 className="login-page-input"
-                                value="thomas.shelby@gmail.com"
+                                value={profileData.data.email}
                                 // {...bindPassword}
                             />
                         </div>
@@ -79,20 +97,10 @@ function ProfileDetail() {
                             <label className="login-page-label">phone</label>
                             <input
                                 type="text"
-                                name="text"
+                                name="phone"
                                 className="login-page-input"
                                 // {...bindPassword}
-                                value="0904887332"
-                            />
-                        </div>
-
-                        <div className="login-page-input-wrapper">
-                            <label className="login-page-label">
-                                date of birth
-                            </label>
-                            <DatePicker
-                                value={moment('22/05/1990', 'DD/MM/YYYY')}
-                                format={'DD/MM/YYYY'}
+                                value={profileData.data.phone}
                             />
                         </div>
                     </div>

@@ -61,7 +61,7 @@ function AllRooms() {
         <div className="page-container">
             <ControlHeader title="rooms" path="/home" />
             <div className="page-content-wrapper">
-                <MenuSquare data={data} subTitle={true} />
+                <MenuSquare data={data} subTitle={true} heightCard="22vh" />
             </div>
 
             <NavigationBar />

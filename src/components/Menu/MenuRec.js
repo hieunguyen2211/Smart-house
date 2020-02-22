@@ -32,6 +32,7 @@ function MenuRec(props) {
                                 id={e.id}
                                 subComponent={e.subComponent}
                                 sizeData={props.data.length}
+                                onClick={props.onClick}
                             />
                         )
                     )}

@@ -9,6 +9,7 @@ function MenuSquare(props) {
                     data={e.rowData}
                     key={e.id}
                     subTitle={props.subTitle}
+                    heightCard={props.heightCard}
                 />
             ))}
         </div>
