@@ -28,7 +28,8 @@ function Security() {
             },
 
             title: 'Pin Code',
-            subTitle: 'Use pin code to unlock the main door'
+            subTitle: 'Use pin code to unlock the main door',
+            path: '/security/pinCode'
         },
         {
             id: 3,

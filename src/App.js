@@ -27,6 +27,7 @@ import Bathroom from './pages/Room/Bathroom';
 
 //Security
 import FaceRecog from './pages/Security/FaceRecog';
+import PinCode from './pages/Security/PinCode';
 
 //Others
 import ProfileDetailPage from './pages/Others/ProfileDetail';
@@ -78,6 +79,8 @@ function App() {
                         exact
                         component={FaceRecog}
                     />
+
+                    <Route path="/security/pinCode" exact component={PinCode} />
                     {/*----------- Security -------------*/}
 
                     {/*----------- Others -------------*/}

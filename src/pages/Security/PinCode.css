@@ -1,0 +1,62 @@
+.pincode-content-wrapper {
+    width: 88vw;
+    background: white;
+    height: 68vh;
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pinCode-password-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    width: 56vw;
+}
+
+.pinCode-password-circle-active {
+    height: 4vh;
+    border-radius: 50%;
+    width: 7vw;
+    background-color: #f63;
+}
+
+.pinCode-password-circle-disabled {
+    height: 4vh;
+    border-radius: 50%;
+    width: 7vw;
+    background: white;
+    border: 1px solid #f63
+}
+
+.pincode-password-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 28vh;
+}
+
+.pincode-input-wrapper {
+    width: 28vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.4s;
+}
+
+.pincode-input-wrapper:hover {
+    background: white radial-gradient(circle, transparent 1%, white 1%) center/15000%;
+}
+
+.pincode-input-wrapper:active {
+    background-color: #bebebe;
+    background-size: 100%;
+    transition: background 0s;
+}
+
+.pincode-input-digit {
+    font-size: 3vh;
+    font-weight: bold;
+}
