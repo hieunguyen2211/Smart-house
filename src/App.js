@@ -25,6 +25,14 @@ import DiningRoom from './pages/Room/DiningRoom';
 import Laundry from './pages/Room/Laundry';
 import Bathroom from './pages/Room/Bathroom';
 
+//Devices
+import Fan from './pages/Device/Fan';
+import Light from './pages/Device/Light';
+import Windows from './pages/Device/Windows';
+import Curtains from './pages/Device/Curtains';
+import Door from './pages/Device/Door';
+import Camera from './pages/Device/Camera';
+
 //Security
 import FaceRecog from './pages/Security/FaceRecog';
 import PinCode from './pages/Security/PinCode';
@@ -53,11 +61,7 @@ function App() {
                     {/*----------- Features -------------*/}
 
                     {/*----------- Rooms -------------*/}
-                    {/*----- Bedroom --------*/}
-                    <Route path="/rooms/bedroom" exact>
-                        <Bedroom />
-                    </Route>
-                    {/*----- Bedroom --------*/}
+                    <Route path="/rooms/bedroom" exact component={Bedroom} />
                     <Route
                         path="/rooms/livingroom"
                         exact
@@ -73,6 +77,19 @@ function App() {
                     <Route path="/rooms/bathroom" exact component={Bathroom} />
                     {/*----------- Rooms -------------*/}
 
+                    {/*----------- Devices -------------*/}
+                    <Route path="/devices/fan" exact component={Fan} />
+                    <Route path="/devices/light" exact component={Light} />
+                    <Route path="/devices/windows" exact component={Windows} />
+                    <Route
+                        path="/devices/curtains"
+                        exact
+                        component={Curtains}
+                    />
+                    <Route path="/devices/door" exact component={Door} />
+                    <Route path="/devices/camera" exact component={Camera} />
+                    {/*----------- Devices -------------*/}
+
                     {/*----------- Security -------------*/}
                     <Route
                         path="/security/faceRecog"
@@ -84,12 +101,16 @@ function App() {
                     {/*----------- Security -------------*/}
 
                     {/*----------- Others -------------*/}
-                    <Route path="/profile/detail" exact>
-                        <ProfileDetailPage />
-                    </Route>
-                    <Route path="/profile/changePassword" exact>
-                        <ChangePasswordPage />
-                    </Route>
+                    <Route
+                        path="/profile/detail"
+                        exact
+                        component={ProfileDetailPage}
+                    />
+                    <Route
+                        path="/profile/changePassword"
+                        exact
+                        component={ChangePasswordPage}
+                    />
                     {/*----------- Others -------------*/}
                 </Switch>
             </BrowserRouter>

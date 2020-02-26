@@ -30,12 +30,12 @@ p {
     box-shadow: none !important;
 }
 
-.ant-calendar-picker-input {
+.ant-time-picker-input {
     font-size: 3vh !important;
-    border: none !important;
-    padding: 0 !important;
-    color: black !important;
-    border-bottom: 1px solid #f63 !important;
+}
+
+.ant-time-picker-panel-input {
+    font-size: 3vh !important;
 }
 
 .page-container {

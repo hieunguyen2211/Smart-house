@@ -2,57 +2,20 @@ import React, { useState } from 'react';
 import ControlHeader from '../Header/Control';
 import NavigationBar from '../Navigation/NavigationBar';
 import DeviceDetails from '../Device/Details';
-import './Room.css';
 
-function Room(props) {
+function Device(props) {
     const urlIconSelected =
-        process.env.PUBLIC_URL + '/icons/devices/content/selected';
+        process.env.PUBLIC_URL + '/icons/rooms/content/selected';
     const urlIconUnselected =
-        process.env.PUBLIC_URL + '/icons/devices/content/unselected';
+        process.env.PUBLIC_URL + '/icons/rooms/content/unselected';
 
     const [deviceData, setDeviceData] = useState([
         {
             id: 1,
-            name: 'Information',
+            name: 'Bedroom',
             icon: {
-                selected: urlIconSelected + '/Information.svg',
-                unselected: urlIconUnselected + '/Information.svg'
-            },
-            data: [
-                {
-                    id: 1,
-                    name: 'Temperature',
-                    value: 30,
-                    unit: '°C'
-                },
-                {
-                    id: 2,
-                    name: 'Humidity',
-                    value: 0.8,
-                    unit: '%'
-                },
-                {
-                    id: 3,
-                    name: 'Gas Condition',
-                    value: true
-                },
-                {
-                    id: 4,
-                    name: 'Pressure',
-                    value: 0.9,
-                    unit: 'Bar'
-                }
-            ],
-            value: 0,
-            status: false,
-            selected: true
-        },
-        {
-            id: 2,
-            name: 'Fan',
-            icon: {
-                selected: urlIconSelected + '/Fan.svg',
-                unselected: urlIconUnselected + '/Fan.svg'
+                selected: urlIconSelected + '/Bedroom.svg',
+                unselected: urlIconUnselected + '/Bedroom.svg'
             },
             data: [
                 {
@@ -70,14 +33,14 @@ function Room(props) {
             ],
             value: 0,
             status: false,
-            selected: false
+            selected: true
         },
         {
-            id: 3,
-            name: 'Light',
+            id: 2,
+            name: 'Living Room',
             icon: {
-                selected: urlIconSelected + '/Light.svg',
-                unselected: urlIconUnselected + '/Light.svg'
+                selected: urlIconSelected + '/Livingroom.svg',
+                unselected: urlIconUnselected + '/Livingroom.svg'
             },
             data: [
                 {
@@ -98,11 +61,11 @@ function Room(props) {
             selected: false
         },
         {
-            id: 4,
-            name: 'Windows',
+            id: 3,
+            name: 'Kitchen',
             icon: {
-                selected: urlIconSelected + '/Windows.svg',
-                unselected: urlIconUnselected + '/Windows.svg'
+                selected: urlIconSelected + '/Kitchen.svg',
+                unselected: urlIconUnselected + '/Kitchen.svg'
             },
             data: [
                 {
@@ -123,11 +86,11 @@ function Room(props) {
             selected: false
         },
         {
-            id: 5,
-            name: 'Door',
+            id: 4,
+            name: 'Dining room',
             icon: {
-                selected: urlIconSelected + '/Door.svg',
-                unselected: urlIconUnselected + '/Door.svg'
+                selected: urlIconSelected + '/Diningroom.svg',
+                unselected: urlIconUnselected + '/Diningroom.svg'
             },
             data: [
                 {
@@ -148,11 +111,36 @@ function Room(props) {
             selected: false
         },
         {
-            id: 6,
-            name: 'Curtains',
+            id: 5,
+            name: 'Laundry',
             icon: {
-                selected: urlIconSelected + '/Curtains.svg',
-                unselected: urlIconUnselected + '/Curtains.svg'
+                selected: urlIconSelected + '/Laundry.svg',
+                unselected: urlIconUnselected + '/Laundry.svg'
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Total working',
+                    value: 12.5,
+                    unit: 'Hrs'
+                },
+                {
+                    id: 2,
+                    name: 'Maximum Power',
+                    value: 80,
+                    unit: 'W'
+                }
+            ],
+            value: 3,
+            status: true,
+            selected: false
+        },
+        {
+            id: 6,
+            name: 'Bathroom',
+            icon: {
+                selected: urlIconSelected + '/Bathroom.svg',
+                unselected: urlIconUnselected + '/Bathroom.svg'
             },
             data: [
                 {
@@ -187,8 +175,8 @@ function Room(props) {
     return (
         <div className="page-container">
             <ControlHeader
-                title={props.roomName}
-                path="/rooms"
+                title={props.deviceName}
+                path="/devices"
                 colorText="white"
                 imageUrl="/images/rooms/bedroom.jpg"
             />
@@ -197,7 +185,7 @@ function Room(props) {
                     e =>
                         e.selected && (
                             <DeviceDetails
-                                deviceName={e.name}
+                                device={e.name}
                                 data={e.data}
                                 value={e.value}
                                 status={e.status}
@@ -219,15 +207,13 @@ function Room(props) {
                                             : 'card-device-off'
                                     }
                                 >
-                                    {e.name !== 'Information' && (
-                                        <div className="device-status-container">
-                                            {e.status ? (
-                                                <span className="dot-on"></span>
-                                            ) : (
-                                                <span className="dot-off"></span>
-                                            )}
-                                        </div>
-                                    )}
+                                    <div className="device-status-container">
+                                        {e.status ? (
+                                            <span className="dot-on"></span>
+                                        ) : (
+                                            <span className="dot-off"></span>
+                                        )}
+                                    </div>
 
                                     <div
                                         style={{
@@ -243,6 +229,10 @@ function Room(props) {
                                             }
                                             className="card-item-content-icon"
                                             alt="icon"
+                                            style={{
+                                                height: '40px',
+                                                marginBottom: '0'
+                                            }}
                                         />
                                         <span>{e.name}</span>
                                     </div>
@@ -257,4 +247,4 @@ function Room(props) {
     );
 }
 
-export default Room;
+export default Device;
