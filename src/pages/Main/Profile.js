@@ -5,12 +5,13 @@ import { Icon } from 'antd';
 import { Route, Link } from 'react-router-dom';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import MenuRec from '../../components/Menu/MenuRec';
+import { ProfileIcon } from '../../images/index.js';
 import './Profile.css';
 const data = [
     {
         id: 1,
         icon: {
-            url: process.env.PUBLIC_URL + '/icons/main/Profile/house.svg',
+            url: ProfileIcon.houseIcon,
             style: {
                 width: '12vw',
                 margin: '3vw'
@@ -22,7 +23,7 @@ const data = [
     {
         id: 2,
         icon: {
-            url: process.env.PUBLIC_URL + '/icons/main/Profile/profile.svg',
+            url: ProfileIcon.profileIcon,
             style: {
                 width: '12vw',
                 margin: '3vw'
@@ -34,7 +35,7 @@ const data = [
     {
         id: 3,
         icon: {
-            url: process.env.PUBLIC_URL + '/icons/main/Profile/password.svg',
+            url: ProfileIcon.passwordIcon,
             style: {
                 width: '12vw',
                 margin: '3vw'
@@ -46,7 +47,7 @@ const data = [
     {
         id: 4,
         icon: {
-            url: process.env.PUBLIC_URL + '/icons/main/Profile/signOut.svg',
+            url: ProfileIcon.signOutIcon,
             style: {
                 width: '12vw',
                 margin: '3vw'

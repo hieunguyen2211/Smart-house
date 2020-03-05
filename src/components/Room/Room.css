@@ -42,7 +42,7 @@
 
 .scrolling-wrapper .card-device-on {
     border-radius: 3%;
-    background: linear-gradient(-180deg, #f53d2d, #f63);
+    background: #0EBEF5;
     height: 14vh;
     width: 40vw;
     display: flex;
@@ -59,7 +59,7 @@
 }
 
 .card-device-off span {
-    color: #f63;
+    color: #0EBEF5;
     margin-top: 1vh;
 }
 

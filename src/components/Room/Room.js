@@ -195,15 +195,25 @@ function Room(props) {
             <div className="room-content-container">
                 {deviceData.map(
                     e =>
-                        e.selected && (
+                        e.selected &&
+                        (e.name === 'Information' ? (
                             <DeviceDetails
                                 deviceName={e.name}
-                                data={e.data}
+                                informationData={e.data}
+                                totalData={deviceData}
                                 value={e.value}
                                 status={e.status}
                                 key={e.id}
                             />
-                        )
+                        ) : (
+                            <DeviceDetails
+                                deviceName={e.name}
+                                informationData={e.data}
+                                value={e.value}
+                                status={e.status}
+                                key={e.id}
+                            />
+                        ))
                 )}
                 <div className="scrolling-wrapper">
                     {deviceData &&

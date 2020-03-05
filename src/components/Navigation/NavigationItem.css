@@ -13,12 +13,12 @@
 }
 
 .navigation-item-icon-active {
-    color: #f63 !important;
+    color: #3a7bd5 !important;
     font-size: 7vw;
 }
 
 .navigation-item-title-active {
-    color: #f63;
+    color: #3a7bd5;
 }
 
 .navigation-item-title-disable {

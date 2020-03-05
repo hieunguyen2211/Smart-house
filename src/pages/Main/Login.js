@@ -148,7 +148,7 @@ function Login() {
                                 <Link to="/register">
                                     <span
                                         style={{
-                                            color: '#f63',
+                                            color: 'rgb(10, 176, 19)',
                                             fontWeight: 'bold',
                                             marginLeft: '1vh'
                                         }}

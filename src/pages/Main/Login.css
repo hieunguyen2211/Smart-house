@@ -4,7 +4,7 @@
 
 .page-container-secondary {
     text-align: center;
-    background-color: rgba(255, 249, 248, 0.9);
+    background-color: rgba(238, 251, 255, 0.9);
 
     min-height: 100vh;
     display: flex;
@@ -19,7 +19,7 @@
 
 .login-page-title {
     font-size: 4vh;
-    color: #f63;
+    color: #3a7bd5;
     font-weight: bold;
     text-transform: uppercase;
     display: flex;
@@ -60,7 +60,7 @@
     width: 100%;
     text-align: left;
     text-transform: uppercase;
-    color: #f63;
+    color: #3a7bd5;
     font-weight: bold;
     font-size: 2vh;
     margin: 0;
@@ -70,7 +70,7 @@
 .login-page-input {
     border: none;
     width: 100%;
-    border-bottom: 1px solid #f63;
+    border-bottom: 1px solid #3a7bd5;
     font-size: 3vh;
     background: transparent;
 }
@@ -92,7 +92,7 @@
     font-size: 3vh;
     padding: 2vh;
     border: none;
-    background: linear-gradient(-180deg, #f53d2d, #f63);
+    background: #3a7bd5;
     color: white;
     border-radius: 5vh;
     text-transform: uppercase;

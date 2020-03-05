@@ -12,6 +12,46 @@ function Device(props) {
     const [deviceData, setDeviceData] = useState([
         {
             id: 1,
+            name: 'Information',
+            icon: {
+                selected:
+                    process.env.PUBLIC_URL +
+                    '/icons/devices/content/selected/Information.svg',
+                unselected:
+                    process.env.PUBLIC_URL +
+                    '/icons/devices/content/unselected/Information.svg'
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'total working ',
+                    value: 50,
+                    unit: 'Hrs'
+                },
+                {
+                    id: 2,
+                    name: 'total power',
+                    value: 400,
+                    unit: 'W'
+                },
+                {
+                    id: 3,
+                    name: 'Status',
+                    value: true
+                },
+                {
+                    id: 4,
+                    name: 'total energy',
+                    value: 3000,
+                    unit: 'kW-H'
+                }
+            ],
+            value: 0,
+            status: false,
+            selected: true
+        },
+        {
+            id: 2,
             name: 'Bedroom',
             icon: {
                 selected: urlIconSelected + '/Bedroom.svg',
@@ -33,10 +73,10 @@ function Device(props) {
             ],
             value: 0,
             status: false,
-            selected: true
+            selected: false
         },
         {
-            id: 2,
+            id: 3,
             name: 'Living Room',
             icon: {
                 selected: urlIconSelected + '/Livingroom.svg',
@@ -61,7 +101,7 @@ function Device(props) {
             selected: false
         },
         {
-            id: 3,
+            id: 4,
             name: 'Kitchen',
             icon: {
                 selected: urlIconSelected + '/Kitchen.svg',
@@ -86,7 +126,7 @@ function Device(props) {
             selected: false
         },
         {
-            id: 4,
+            id: 5,
             name: 'Dining room',
             icon: {
                 selected: urlIconSelected + '/Diningroom.svg',
@@ -111,7 +151,7 @@ function Device(props) {
             selected: false
         },
         {
-            id: 5,
+            id: 6,
             name: 'Laundry',
             icon: {
                 selected: urlIconSelected + '/Laundry.svg',
@@ -136,7 +176,7 @@ function Device(props) {
             selected: false
         },
         {
-            id: 6,
+            id: 7,
             name: 'Bathroom',
             icon: {
                 selected: urlIconSelected + '/Bathroom.svg',
@@ -183,15 +223,25 @@ function Device(props) {
             <div className="room-content-container">
                 {deviceData.map(
                     e =>
-                        e.selected && (
+                        e.selected &&
+                        (e.name === 'Information' ? (
                             <DeviceDetails
-                                device={e.name}
-                                data={e.data}
+                                deviceName={e.name}
+                                informationData={e.data}
+                                totalData={deviceData}
                                 value={e.value}
                                 status={e.status}
                                 key={e.id}
                             />
-                        )
+                        ) : (
+                            <DeviceDetails
+                                deviceName={e.name}
+                                informationData={e.data}
+                                value={e.value}
+                                status={e.status}
+                                key={e.id}
+                            />
+                        ))
                 )}
                 <div className="scrolling-wrapper">
                     {deviceData &&
@@ -207,13 +257,15 @@ function Device(props) {
                                             : 'card-device-off'
                                     }
                                 >
-                                    <div className="device-status-container">
-                                        {e.status ? (
-                                            <span className="dot-on"></span>
-                                        ) : (
-                                            <span className="dot-off"></span>
-                                        )}
-                                    </div>
+                                    {e.name !== 'Information' && (
+                                        <div className="device-status-container">
+                                            {e.status ? (
+                                                <span className="dot-on"></span>
+                                            ) : (
+                                                <span className="dot-off"></span>
+                                            )}
+                                        </div>
+                                    )}
 
                                     <div
                                         style={{
@@ -229,10 +281,6 @@ function Device(props) {
                                             }
                                             className="card-item-content-icon"
                                             alt="icon"
-                                            style={{
-                                                height: '40px',
-                                                marginBottom: '0'
-                                            }}
                                         />
                                         <span>{e.name}</span>
                                     </div>

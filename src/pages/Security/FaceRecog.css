@@ -29,11 +29,11 @@
 } */
 
 .security-icon-power {
-    background: black;
+    background: white;
     border-radius: 50%;
-    color: white !important;
+    color: #3a7bd5 !important;
     font-size: 20vw;
     position: absolute;
     bottom: 6vh;
-    border: 2px solid black;
+    border: 2px solid white;
 }

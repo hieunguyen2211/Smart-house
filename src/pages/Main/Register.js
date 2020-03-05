@@ -89,7 +89,7 @@ function Register() {
                                     <Link to="/">
                                         <span
                                             style={{
-                                                color: '#f63',
+                                                color: '#0EBEF5',
                                                 fontWeight: 'bold',
                                                 marginLeft: '1vh'
                                             }}

@@ -52,12 +52,12 @@
 
 .device-power-button {
     text-transform: uppercase;
-    border: 1px solid #f53d2d;
+    border: 1px solid #0EBEF5;
     border-radius: 100vh;
     width: 25vh;
     padding: 2vh 0;
     color: white;
-    background: linear-gradient(-180deg, #f53d2d, #f63);
+    background: #0EBEF5;
     font-weight: bold;
     font-size: 3vh;
 }
@@ -93,6 +93,7 @@
     margin: 0;
     font-size: 5vw;
     color: grey;
+    text-transform: capitalize;
 }
 
 .device-detail-time-wrapper {
@@ -103,8 +104,8 @@
 }
 
 .device-detail-time-btn {
-    background: linear-gradient(-180deg, #f53d2d, #f63);
-    border: 1px solid #f53d2d;
+    background: #0EBEF5;
+    border: 1px solid #0EBEF5;
     color: white;
     height: 5vh;
     border-radius: 1vw;
@@ -114,117 +115,6 @@
     justify-content: center;
 }
 
-.circle {
-    position: relative;
-    padding: 0;
-    margin: 1em auto;
-    width: 40vh;
-    height: 40vh;
-    border-radius: 50%;
-    list-style: none;
-    overflow: hidden;
-}
-
-.circle li {
-    overflow: hidden;
-    position: absolute;
-    top: -50%;
-    right: -30%;
-    width: 80%;
-    height: 100%;
-    transform-origin: 0% 100%;
-    border: 4px solid white;
-}
-
-.text {
-    width: 200%;
-    height: 200%;
-}
-
-li:first-child {
-    transform: rotate(0deg) skewY(-18deg);
-}
-
-li:nth-child(2) {
-    transform: rotate(72deg) skewY(-18deg);
-}
-
-li:nth-child(3) {
-    transform: rotate(144deg) skewY(-18deg);
-}
-
-li:nth-child(4) {
-    transform: rotate(216deg) skewY(-18deg);
-}
-
-li:nth-child(5) {
-    transform: rotate(288deg) skewY(-18deg);
-}
-
-
-/* li:first-child .text {
-    background: green;
-}
-
-li:nth-child(2) .text {
-    background: tomato;
-}
-
-li:nth-child(3) .text {
-    background: aqua;
-}
-
-li:nth-child(4) .text {
-    background: yellow;
-}
-
-li:nth-child(5) .text {
-    background: orange;
-} */
-
-.detail-circle-icon-fan {
-    position: absolute;
-    z-index: 1;
-    top: 21vh;
-    left: 59vw;
-}
-
-.detail-circle-icon-light {
-    position: absolute;
-    z-index: 1;
-    top: 35vh;
-    left: 67vw;
-}
-
-.detail-circle-icon-windows {
-    position: absolute;
-    z-index: 1;
-    top: 44vh;
-    left: 45vw;
-}
-
-.detail-circle-icon-door {
-    position: absolute;
-    z-index: 1;
-    top: 35vh;
-    left: 24vw;
-}
-
-.detail-circle-icon-curtains {
-    position: absolute;
-    z-index: 1;
-    top: 21vh;
-    left: 32vw;
-}
-
-.device-details-circle-center {
-    position: absolute;
-    width: 20vw;
-    height: 20vw;
-    top: 30vh;
-    background: white;
-    border-radius: 50%;
-}
 
 /* .circle {
     position: relative;

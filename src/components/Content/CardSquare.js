@@ -12,7 +12,7 @@ function CardSquare(props) {
                     fontSize: '14px'
                 }}
             >
-                <span style={{ fontWeight: 'bold', color: '#f63 ' }}>4</span>{' '}
+                <span style={{ fontWeight: 'bold', color: '#0EBEF5 ' }}>4</span>{' '}
                 devices
             </p>
             <p style={{ color: 'black', fontSize: '18px' }}>{props.name}</p>
