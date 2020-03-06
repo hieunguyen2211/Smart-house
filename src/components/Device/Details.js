@@ -61,11 +61,13 @@ function Details(props) {
         <div className="device-details-container information-container">
             {deviceParamsFirst}
             {data.length === 5 ? (
-                <CircleSeparate5Segment data={data} />
+                <CircleSeparate5Segment
+                    data={data}
+                    handleClickChangeStatus={props.handleClickChangeStatus}
+                />
             ) : (
                 <CircleSeparate6Segment data={data} />
             )}
-
             {deviceParamsSecond}
         </div>
     ) : (
@@ -97,7 +99,10 @@ function Details(props) {
                         <FaPlay />
                     </button>
                 </div>
-                <button className="device-power-button">
+                <button
+                    className="device-power-button"
+                    onClick={() => props.handleClickChangeStatus()}
+                >
                     {titleButtonPower}
                 </button>
             </div>

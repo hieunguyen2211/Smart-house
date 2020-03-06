@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ControlHeader from '../Header/Control';
 import NavigationBar from '../Navigation/NavigationBar';
 import DeviceDetails from '../Device/Details';
+import Announcement from '../Modal/Announcement';
+import { getCurrentHumidity } from '../../firebase/paramsWeather/humidity';
+import { getCurrentLed, updateStatusLed } from '../../firebase/devices/led';
 import './Room.css';
+
+import SyncLoader from 'react-spinners/SyncLoader';
 
 function Room(props) {
     const urlIconSelected =
         process.env.PUBLIC_URL + '/icons/devices/content/selected';
     const urlIconUnselected =
         process.env.PUBLIC_URL + '/icons/devices/content/unselected';
-
     const [deviceData, setDeviceData] = useState([
         {
             id: 1,
@@ -28,7 +32,7 @@ function Room(props) {
                 {
                     id: 2,
                     name: 'Humidity',
-                    value: 0.8,
+                    value: 50,
                     unit: '%'
                 },
                 {
@@ -44,8 +48,7 @@ function Room(props) {
                 }
             ],
             value: 0,
-            status: false,
-            selected: true
+            status: false
         },
         {
             id: 2,
@@ -69,8 +72,7 @@ function Room(props) {
                 }
             ],
             value: 0,
-            status: false,
-            selected: false
+            status: false
         },
         {
             id: 3,
@@ -94,8 +96,7 @@ function Room(props) {
                 }
             ],
             value: 1,
-            status: true,
-            selected: false
+            status: false
         },
         {
             id: 4,
@@ -119,8 +120,7 @@ function Room(props) {
                 }
             ],
             value: 2,
-            status: true,
-            selected: false
+            status: true
         },
         {
             id: 5,
@@ -144,8 +144,7 @@ function Room(props) {
                 }
             ],
             value: 1,
-            status: true,
-            selected: false
+            status: true
         },
         {
             id: 6,
@@ -169,23 +168,81 @@ function Room(props) {
                 }
             ],
             value: 3,
-            status: true,
-            selected: false
+            status: true
         }
     ]);
+    const [selectingDevice, setSelectingDevice] = useState([
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+    ]);
+    const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const humidityRead = await getCurrentHumidity();
+            const ledRead = await getCurrentLed();
+            const newDeviceData = deviceData;
+            newDeviceData[0].data[1].value = humidityRead.value;
+            newDeviceData[2].status = ledRead.status === 1 ? true : false;
+            setDeviceData(newDeviceData);
+            setLoading(false);
+        };
+        fetchData();
+    }, [deviceData]);
 
     const handleSelectDevice = id => {
+        setSelectingDevice(selectingDevice =>
+            selectingDevice.map((e, index) => (index === id - 1 ? true : false))
+        );
+    };
+
+    const handleClickChangeStatus = () => {
+        setVisible(true);
+        const currentStatus = deviceData[2].status;
+        currentStatus
+            ? setMessage('Turn off your light successfully.')
+            : setMessage('Turn on your light successfully.');
+        updateStatusLed(!currentStatus);
         setDeviceData(deviceData =>
             deviceData.map(e => {
-                if (e.id === id) e.selected = true;
-                else if (e.selected === true) e.selected = false;
+                if (e.id === 3) e.status = !currentStatus;
                 return e;
             })
         );
     };
 
-    return (
+    const handleToggleModal = () => {
+        setVisible(false);
+    };
+
+    return loading ? (
+        <div className="page-container" style={{ background: 'white' }}>
+            <ControlHeader
+                title={props.roomName}
+                path="/rooms"
+                colorText="white"
+                imageUrl="/images/rooms/bedroom.jpg"
+            />
+            <div className="page-content-wrapper">
+                <SyncLoader size={30} color={'#3a7bd5'} loading={loading} />
+            </div>
+
+            <NavigationBar />
+        </div>
+    ) : (
         <div className="page-container">
+            <Announcement
+                visible={visible}
+                handleToggleModal={handleToggleModal}
+                styleMessage={{ color: 'green', fontSize: '3vh' }}
+                message={message}
+            />
             <ControlHeader
                 title={props.roomName}
                 path="/rooms"
@@ -195,7 +252,7 @@ function Room(props) {
             <div className="room-content-container">
                 {deviceData.map(
                     e =>
-                        e.selected &&
+                        selectingDevice[e.id - 1] &&
                         (e.name === 'Information' ? (
                             <DeviceDetails
                                 deviceName={e.name}
@@ -204,6 +261,9 @@ function Room(props) {
                                 value={e.value}
                                 status={e.status}
                                 key={e.id}
+                                handleClickChangeStatus={
+                                    handleClickChangeStatus
+                                }
                             />
                         ) : (
                             <DeviceDetails
@@ -212,6 +272,9 @@ function Room(props) {
                                 value={e.value}
                                 status={e.status}
                                 key={e.id}
+                                handleClickChangeStatus={
+                                    handleClickChangeStatus
+                                }
                             />
                         ))
                 )}
@@ -224,7 +287,7 @@ function Room(props) {
                             >
                                 <div
                                     className={
-                                        e.selected
+                                        selectingDevice[e.id - 1]
                                             ? 'card-device-on'
                                             : 'card-device-off'
                                     }
@@ -247,7 +310,7 @@ function Room(props) {
                                     >
                                         <img
                                             src={
-                                                e.selected
+                                                selectingDevice[e.id - 1]
                                                     ? e.icon.selected
                                                     : e.icon.unselected
                                             }
