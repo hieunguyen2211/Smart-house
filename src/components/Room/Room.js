@@ -4,6 +4,7 @@ import NavigationBar from '../Navigation/NavigationBar';
 import DeviceDetails from '../Device/Details';
 import Announcement from '../Modal/Announcement';
 import { getCurrentHumidity } from '../../firebase/paramsWeather/humidity';
+import { getCurrentTemperature } from '../../firebase/paramsWeather/temperature';
 import { getCurrentLed, updateStatusLed } from '../../firebase/devices/led';
 import './Room.css';
 
@@ -185,16 +186,19 @@ function Room(props) {
 
     useEffect(() => {
         const fetchData = async () => {
+            const temperatureRead = await getCurrentTemperature();
             const humidityRead = await getCurrentHumidity();
-            const ledRead = await getCurrentLed();
+            const ledRead = await getCurrentLed(props.roomName);
             const newDeviceData = deviceData;
+            // newDeviceData[0].data[0].value = temperatureRead.value;
+            newDeviceData[0].data[0].value = temperatureRead;
             newDeviceData[0].data[1].value = humidityRead.value;
             newDeviceData[2].status = ledRead.status === 1 ? true : false;
             setDeviceData(newDeviceData);
             setLoading(false);
         };
         fetchData();
-    }, [deviceData]);
+    }, [deviceData, props.roomName]);
 
     const handleSelectDevice = id => {
         setSelectingDevice(selectingDevice =>
@@ -208,7 +212,7 @@ function Room(props) {
         currentStatus
             ? setMessage('Turn off your light successfully.')
             : setMessage('Turn on your light successfully.');
-        updateStatusLed(!currentStatus);
+        updateStatusLed(!currentStatus, props.roomName);
         setDeviceData(deviceData =>
             deviceData.map(e => {
                 if (e.id === 3) e.status = !currentStatus;
@@ -227,7 +231,6 @@ function Room(props) {
                 title={props.roomName}
                 path="/rooms"
                 colorText="white"
-                imageUrl="/images/rooms/bedroom.jpg"
             />
             <div className="page-content-wrapper">
                 <SyncLoader size={30} color={'#3a7bd5'} loading={loading} />

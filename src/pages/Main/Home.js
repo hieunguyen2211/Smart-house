@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeatherRequest } from '../../redux/currentWeather/currentWeatherAction';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import MenuSquare from '../../components/Menu/MenuSquare';
 import HomePageHeader from '../../components/Header/WeatherParameters';
 import './Home.css';
+
+import SyncLoader from 'react-spinners/SyncLoader';
 
 const data = [
     {
@@ -62,11 +64,22 @@ const data = [
 
 function Home() {
     const currentWeatherData = useSelector(state => state.currentWeather);
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchWeatherRequest());
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     }, [dispatch]);
-    return (
+    return loading ? (
+        <div className="page-container" style={{ background: 'white' }}>
+            <div className="page-content-wrapper">
+                <SyncLoader size={30} color={'#3a7bd5'} loading={loading} />
+            </div>
+            <NavigationBar />
+        </div>
+    ) : (
         <div className="page-container">
             <HomePageHeader data={currentWeatherData.currentWeather} />
             <div className="home-menu-wrapper">

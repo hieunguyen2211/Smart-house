@@ -10,13 +10,17 @@ const data = [
                 id: 1,
                 name: 'Light',
                 iconUrl: '/devices/color/light',
-                path: '/devices/light'
+                path: '/devices/light',
+                amount: 6,
+                unit: 'Rooms'
             },
             {
                 id: 2,
                 name: 'Fan',
                 iconUrl: '/devices/color/fan',
-                path: '/devices/fan'
+                path: '/devices/fan',
+                amount: 6,
+                unit: 'Rooms'
             }
         ],
         id: 1
@@ -27,13 +31,17 @@ const data = [
                 id: 3,
                 name: 'Windows',
                 iconUrl: '/devices/color/window',
-                path: '/devices/windows'
+                path: '/devices/windows',
+                amount: 6,
+                unit: 'Rooms'
             },
             {
                 id: 4,
                 name: 'Curtains',
                 iconUrl: '/devices/color/curtain',
-                path: '/devices/curtains'
+                path: '/devices/curtains',
+                amount: 6,
+                unit: 'Rooms'
             }
         ],
         id: 2
@@ -44,13 +52,17 @@ const data = [
                 id: 5,
                 name: 'Door',
                 iconUrl: '/devices/color/door',
-                path: '/devices/door'
+                path: '/devices/door',
+                amount: 6,
+                unit: 'Rooms'
             },
             {
                 id: 6,
                 name: 'Camera',
                 iconUrl: '/devices/color/camera',
-                path: '/devices/camera'
+                path: '/devices/camera',
+                amount: 6,
+                unit: 'Rooms'
             }
         ],
         id: 3

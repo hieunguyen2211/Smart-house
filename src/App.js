@@ -22,7 +22,7 @@ import Bedroom from './pages/Room/Bedroom';
 import LivingRoom from './pages/Room/LivingRoom';
 import Kitchen from './pages/Room/Kitchen';
 import DiningRoom from './pages/Room/DiningRoom';
-import Laundry from './pages/Room/Laundry';
+import Garage from './pages/Room/Garage';
 import Bathroom from './pages/Room/Bathroom';
 
 //Devices
@@ -73,7 +73,7 @@ function App() {
                         exact
                         component={DiningRoom}
                     />
-                    <Route path="/rooms/laundry" exact component={Laundry} />
+                    <Route path="/rooms/Garage" exact component={Garage} />
                     <Route path="/rooms/bathroom" exact component={Bathroom} />
                     {/*----------- Rooms -------------*/}
 

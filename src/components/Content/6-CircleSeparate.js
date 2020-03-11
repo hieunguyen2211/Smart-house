@@ -11,6 +11,7 @@ function CircleSeparate(props) {
                         .replace(/\s+/g, '')}`}
                     alt="icon"
                     key={e.id}
+                    onClick={() => props.handleClickChangeStatus(e.name)}
                 />
             ))}
 

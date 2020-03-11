@@ -65,12 +65,12 @@
         left: 33vw !important;
     }
 
-    .circle-6-segment-icon-laundry {
+    .circle-6-segment-icon-bathroom {
         top: 31vh !important;
         left: 23vw !important;
     }
 
-    .circle-6-segment-icon-bathroom {
+    .circle-6-segment-icon-garage {
         top: 20vh !important;
         left: 33vw !important;
     }
@@ -104,14 +104,14 @@
     left: 32vw;
 }
 
-.circle-6-segment-icon-laundry {
+.circle-6-segment-icon-bathroom {
     position: absolute;
     z-index: 1;
     top: 31vh;
-    left: 21vw;
+    left: 23vw;
 }
 
-.circle-6-segment-icon-bathroom {
+.circle-6-segment-icon-garage {
     position: absolute;
     z-index: 1;
     top: 19vh;

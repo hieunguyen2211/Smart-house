@@ -66,7 +66,10 @@ function Details(props) {
                     handleClickChangeStatus={props.handleClickChangeStatus}
                 />
             ) : (
-                <CircleSeparate6Segment data={data} />
+                <CircleSeparate6Segment
+                    data={data}
+                    handleClickChangeStatus={props.handleClickChangeStatus}
+                />
             )}
             {deviceParamsSecond}
         </div>

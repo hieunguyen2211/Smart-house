@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ControlHeader from '../Header/Control';
 import NavigationBar from '../Navigation/NavigationBar';
 import DeviceDetails from '../Device/Details';
+import { getAllLeds, updateStatusLed } from '../../firebase/devices/led';
+import Announcement from '../Modal/Announcement';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 function Device(props) {
     const urlIconSelected =
@@ -47,8 +50,7 @@ function Device(props) {
                 }
             ],
             value: 0,
-            status: false,
-            selected: true
+            status: false
         },
         {
             id: 2,
@@ -72,8 +74,7 @@ function Device(props) {
                 }
             ],
             value: 0,
-            status: false,
-            selected: false
+            status: false
         },
         {
             id: 3,
@@ -97,8 +98,7 @@ function Device(props) {
                 }
             ],
             value: 1,
-            status: true,
-            selected: false
+            status: true
         },
         {
             id: 4,
@@ -122,8 +122,7 @@ function Device(props) {
                 }
             ],
             value: 2,
-            status: true,
-            selected: false
+            status: true
         },
         {
             id: 5,
@@ -147,36 +146,10 @@ function Device(props) {
                 }
             ],
             value: 1,
-            status: true,
-            selected: false
+            status: true
         },
         {
             id: 6,
-            name: 'Laundry',
-            icon: {
-                selected: urlIconSelected + '/Laundry.svg',
-                unselected: urlIconUnselected + '/Laundry.svg'
-            },
-            data: [
-                {
-                    id: 1,
-                    name: 'Total working',
-                    value: 12.5,
-                    unit: 'Hrs'
-                },
-                {
-                    id: 2,
-                    name: 'Maximum Power',
-                    value: 80,
-                    unit: 'W'
-                }
-            ],
-            value: 3,
-            status: true,
-            selected: false
-        },
-        {
-            id: 7,
             name: 'Bathroom',
             icon: {
                 selected: urlIconSelected + '/Bathroom.svg',
@@ -196,34 +169,132 @@ function Device(props) {
                     unit: 'W'
                 }
             ],
+            value: 2,
+            status: true
+        },
+        {
+            id: 7,
+            name: 'Garage',
+            icon: {
+                selected: urlIconSelected + '/Garage.svg',
+                unselected: urlIconUnselected + '/Garage.svg'
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Total working',
+                    value: 12.5,
+                    unit: 'Hrs'
+                },
+                {
+                    id: 2,
+                    name: 'Maximum Power',
+                    value: 80,
+                    unit: 'W'
+                }
+            ],
             value: 3,
-            status: true,
-            selected: false
+            status: true
         }
     ]);
 
+    const [selectingDevice, setSelectingDevice] = useState([
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ]);
+
+    const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState('');
+
     const handleSelectDevice = id => {
+        setSelectingDevice(selectingDevice =>
+            selectingDevice.map((e, index) => (index === id - 1 ? true : false))
+        );
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const ledReadAll = await getAllLeds();
+            const newDeviceData = deviceData;
+            newDeviceData.map(e => {
+                if (e.name !== 'Information') {
+                    const nameRoom = e.name.toUpperCase().replace(/\s+/g, '');
+                    ledReadAll.map(room => {
+                        if (room[0] === nameRoom)
+                            e.status = room[1].status === 0 ? false : true;
+                        return room;
+                    });
+                }
+                return e;
+            });
+            setDeviceData(newDeviceData);
+            setLoading(false);
+        };
+        fetchData();
+    }, [deviceData]);
+
+    const handleClickChangeStatus = roomName => {
+        setVisible(true);
+        let currentStatus = true;
+        deviceData.map(e => {
+            if (e.name === roomName) currentStatus = e.status;
+            return e;
+        });
+        // currentStatus
+        //     ? setMessage(`${roomName}'s light turned off successfully.`)
+        //     : setMessage(`${roomName}'s light turned on successfully.`);
+        currentStatus
+            ? setMessage('Turn off your light successfully.')
+            : setMessage('Turn on your light successfully.');
+        updateStatusLed(!currentStatus, roomName);
         setDeviceData(deviceData =>
             deviceData.map(e => {
-                if (e.id === id) e.selected = true;
-                else if (e.selected === true) e.selected = false;
+                if (e.name === roomName) e.status = !currentStatus;
                 return e;
             })
         );
     };
 
-    return (
-        <div className="page-container">
+    const handleToggleModal = () => {
+        setVisible(false);
+    };
+
+    return loading ? (
+        <div className="page-container" style={{ background: 'white' }}>
             <ControlHeader
                 title={props.deviceName}
                 path="/devices"
                 colorText="white"
-                imageUrl="/images/rooms/bedroom.jpg"
+            />
+            <div className="page-content-wrapper">
+                <SyncLoader size={30} color={'#3a7bd5'} loading={loading} />
+            </div>
+
+            <NavigationBar />
+        </div>
+    ) : (
+        <div className="page-container">
+            <Announcement
+                visible={visible}
+                handleToggleModal={handleToggleModal}
+                styleMessage={{ color: 'green', fontSize: '3vh' }}
+                message={message}
+            />
+            <ControlHeader
+                title={props.deviceName}
+                path="/devices"
+                colorText="white"
             />
             <div className="room-content-container">
                 {deviceData.map(
                     e =>
-                        e.selected &&
+                        selectingDevice[e.id - 1] &&
                         (e.name === 'Information' ? (
                             <DeviceDetails
                                 deviceName={e.name}
@@ -232,6 +303,9 @@ function Device(props) {
                                 value={e.value}
                                 status={e.status}
                                 key={e.id}
+                                handleClickChangeStatus={
+                                    handleClickChangeStatus
+                                }
                             />
                         ) : (
                             <DeviceDetails
@@ -240,6 +314,9 @@ function Device(props) {
                                 value={e.value}
                                 status={e.status}
                                 key={e.id}
+                                handleClickChangeStatus={() =>
+                                    handleClickChangeStatus(e.name)
+                                }
                             />
                         ))
                 )}
@@ -252,7 +329,7 @@ function Device(props) {
                             >
                                 <div
                                     className={
-                                        e.selected
+                                        selectingDevice[e.id - 1]
                                             ? 'card-device-on'
                                             : 'card-device-off'
                                     }
@@ -275,7 +352,7 @@ function Device(props) {
                                     >
                                         <img
                                             src={
-                                                e.selected
+                                                selectingDevice[e.id - 1]
                                                     ? e.icon.selected
                                                     : e.icon.unselected
                                             }
