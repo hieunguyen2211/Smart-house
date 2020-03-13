@@ -191,7 +191,7 @@ function Room(props) {
             const ledRead = await getCurrentLed(props.roomName);
             const newDeviceData = deviceData;
             // newDeviceData[0].data[0].value = temperatureRead.value;
-            newDeviceData[0].data[0].value = temperatureRead;
+            // newDeviceData[0].data[0].value = temperatureRead;
             newDeviceData[0].data[1].value = humidityRead.value;
             newDeviceData[2].status = ledRead.status === 1 ? true : false;
             setDeviceData(newDeviceData);
@@ -233,7 +233,7 @@ function Room(props) {
                 colorText="white"
             />
             <div className="page-content-wrapper">
-                <SyncLoader size={30} color={'#3a7bd5'} loading={loading} />
+                <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
             </div>
 
             <NavigationBar />

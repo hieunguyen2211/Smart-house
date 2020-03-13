@@ -273,7 +273,7 @@ function Device(props) {
                 colorText="white"
             />
             <div className="page-content-wrapper">
-                <SyncLoader size={30} color={'#3a7bd5'} loading={loading} />
+                <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
             </div>
 
             <NavigationBar />

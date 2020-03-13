@@ -72,14 +72,15 @@ function Home() {
             setLoading(false);
         }, 500);
     }, [dispatch]);
-    return loading ? (
-        <div className="page-container" style={{ background: 'white' }}>
-            <div className="page-content-wrapper">
-                <SyncLoader size={30} color={'#3a7bd5'} loading={loading} />
-            </div>
-            <NavigationBar />
-        </div>
-    ) : (
+    // return loading ? (
+    //     <div className="page-container" style={{ background: 'white' }}>
+    //         <div className="page-content-wrapper">
+    //             <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
+    //         </div>
+    //         <NavigationBar />
+    //     </div>
+    // ) : (
+    return (
         <div className="page-container">
             <HomePageHeader data={currentWeatherData.currentWeather} />
             <div className="home-menu-wrapper">

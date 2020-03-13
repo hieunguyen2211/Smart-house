@@ -4,8 +4,10 @@ import ControlHeader from '../../components/Header/Control';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import { Rect, Layer, Stage } from 'react-konva';
 import { Icon } from 'antd';
+import { API_AI_URL } from '../../api/config.js';
 import './FaceRecog.css';
 
+import SyncLoader from 'react-spinners/SyncLoader';
 const videoConstraints = {
     width: 1280,
     height: 720,
@@ -47,13 +49,13 @@ function Security() {
         const blob = b64toBlob(realData, contentType);
         setImages(images => [...images, blob]);
     };
-
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         if (images.length === 10) {
             const formData = new FormData();
             images.forEach(e => formData.append('files[]', e, e.name));
             console.log(formData.getAll('files[]'));
-            fetch(`http://c6d0008d.ngrok.io/recognize`, {
+            fetch(`${API_AI_URL}/recognize`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json'
@@ -66,10 +68,20 @@ function Security() {
                 });
             setImages([]);
         }
-    }, [images]);
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
+    }, [images, loading]);
 
     console.log(images);
-    return (
+    return loading ? (
+        <div className="page-container" style={{ background: 'white' }}>
+            <div className="page-content-wrapper">
+                <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
+            </div>
+            <NavigationBar />
+        </div>
+    ) : (
         <div className="page-container">
             <ControlHeader title="security" path="/security" />
             <div className="page-content-wrapper">

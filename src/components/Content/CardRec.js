@@ -16,13 +16,17 @@ function CardRec(props) {
             onClick={() => {
                 localStorage.removeItem('access_token');
             }}
+            style={{ height: props.height }}
         >
             <img
                 src={props.iconURL}
                 alt="cardRec-icon"
                 style={props.iconStyle}
             />
-            <div className="cardRec-title-wrapper">
+            <div
+                className="cardRec-title-wrapper"
+                style={{ width: props.textWidth }}
+            >
                 <p className="cardRec-title">{props.title}</p>
                 {props.subTitle && (
                     <p className="cardRec-subTitle">{props.subTitle}</p>
@@ -31,13 +35,16 @@ function CardRec(props) {
             {props.subComponent}
         </div>
     ) : (
-        <div className={cardClassName}>
+        <div className={cardClassName} style={{ height: props.height }}>
             <img
                 src={props.iconURL}
                 alt="cardRec-icon"
                 style={props.iconStyle}
             />
-            <div className="cardRec-title-wrapper">
+            <div
+                className="cardRec-title-wrapper"
+                style={{ width: props.textWidth }}
+            >
                 <p className="cardRec-title">{props.title}</p>
                 {props.subTitle && (
                     <p className="cardRec-subTitle">{props.subTitle}</p>

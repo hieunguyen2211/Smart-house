@@ -7,15 +7,18 @@ import NavigationBar from '../../components/Navigation/NavigationBar';
 import MenuRec from '../../components/Menu/MenuRec';
 import { ProfileIcon } from '../../images/index.js';
 import './Profile.css';
+
+import SyncLoader from 'react-spinners/SyncLoader';
+
+const styleIcon = {
+    width: '12vw'
+};
 const data = [
     {
         id: 1,
         icon: {
             url: ProfileIcon.houseIcon,
-            style: {
-                width: '12vw',
-                margin: '3vw'
-            }
+            style: styleIcon
         },
         title: 'My home',
         path: '/rooms'
@@ -24,10 +27,7 @@ const data = [
         id: 2,
         icon: {
             url: ProfileIcon.profileIcon,
-            style: {
-                width: '12vw',
-                margin: '3vw'
-            }
+            style: styleIcon
         },
         title: 'My profile',
         path: '/profile/detail'
@@ -36,10 +36,7 @@ const data = [
         id: 3,
         icon: {
             url: ProfileIcon.passwordIcon,
-            style: {
-                width: '12vw',
-                margin: '3vw'
-            }
+            style: styleIcon
         },
         title: 'Change password',
         path: '/profile/changePassword'
@@ -48,10 +45,7 @@ const data = [
         id: 4,
         icon: {
             url: ProfileIcon.signOutIcon,
-            style: {
-                width: '12vw',
-                margin: '3vw'
-            }
+            style: styleIcon
         },
         title: 'Sign out',
         path: '/'
@@ -62,8 +56,12 @@ export default function Profile() {
     const profileData = useSelector(state => state.user);
     const dispatch = useDispatch();
 
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         dispatch(fetchProfileRequest());
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, [dispatch]);
 
     const [modes, setModes] = useState([
@@ -118,6 +116,14 @@ export default function Profile() {
         );
     };
 
+    // return loading ? (
+    //     <div className="page-container" style={{ background: 'white' }}>
+    //         <div className="page-content-wrapper">
+    //             <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
+    //         </div>
+    //         <NavigationBar />
+    //     </div>
+    // ) : (
     return (
         <div className="page-container">
             <div className="control-header-container header-profile">
@@ -199,7 +205,7 @@ export default function Profile() {
                         </div>
                     ))}
                 </div>
-                <MenuRec data={data} />
+                <MenuRec data={data} height="10vh" textWidth="62vw" />
             </div>
             <NavigationBar />
         </div>

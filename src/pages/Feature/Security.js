@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ControlHeader from '../../components/Header/Control';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import MenuRec from '../../components/Menu/MenuRec';
 import './Security.css';
 
+import SyncLoader from 'react-spinners/SyncLoader';
+
 function Security() {
     const styleIcon = {
-        width: '13vw',
-        margin: '4vw'
+        width: '13vw'
     };
     const data = [
         {
@@ -60,17 +61,34 @@ function Security() {
                 style: styleIcon
             },
             title: 'Notification',
-            subTitle: 'Notifications about your visitors ',
-            subComponent: (
-                <button className="security-notification-badge">10</button>
-            )
+            subTitle: 'Notifications about your visitors '
+            // subComponent: (
+            //     <button className="security-notification-badge">10</button>
+            // )
         }
     ];
+
+    // const [loading, setLoading] = useState(true);
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setLoading(false);
+    //     }, 1000);
+    // });
+
+    // return loading ? (
+    //     <div className="page-container" style={{ background: 'white' }}>
+    //         <div className="page-content-wrapper">
+    //             <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
+    //         </div>
+    //         <NavigationBar />
+    //     </div>
+    // ) : (
     return (
         <div className="page-container">
             <ControlHeader title="security" path="/home" />
             <div className="page-content-wrapper">
-                <MenuRec data={data} />
+                <MenuRec data={data} height="12vh" textWidth="62vw" />
             </div>
             <NavigationBar />
         </div>
