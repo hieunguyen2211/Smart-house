@@ -22,180 +22,180 @@ function Device(props) {
                     '/icons/devices/content/selected/Information.svg',
                 unselected:
                     process.env.PUBLIC_URL +
-                    '/icons/devices/content/unselected/Information.svg'
+                    '/icons/devices/content/unselected/Information.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'total working ',
                     value: 50,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'total power',
                     value: 400,
-                    unit: 'W'
+                    unit: 'W',
                 },
                 {
                     id: 3,
                     name: 'Status',
-                    value: true
+                    value: true,
                 },
                 {
                     id: 4,
                     name: 'total energy',
                     value: 3000,
-                    unit: 'kW-H'
-                }
+                    unit: 'kW-H',
+                },
             ],
             value: 0,
-            status: false
+            status: false,
         },
         {
             id: 2,
             name: 'Bedroom',
             icon: {
                 selected: urlIconSelected + '/Bedroom.svg',
-                unselected: urlIconUnselected + '/Bedroom.svg'
+                unselected: urlIconUnselected + '/Bedroom.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 0,
-            status: false
+            status: false,
         },
         {
             id: 3,
             name: 'Living Room',
             icon: {
                 selected: urlIconSelected + '/Livingroom.svg',
-                unselected: urlIconUnselected + '/Livingroom.svg'
+                unselected: urlIconUnselected + '/Livingroom.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 1,
-            status: true
+            status: true,
         },
         {
             id: 4,
             name: 'Kitchen',
             icon: {
                 selected: urlIconSelected + '/Kitchen.svg',
-                unselected: urlIconUnselected + '/Kitchen.svg'
+                unselected: urlIconUnselected + '/Kitchen.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 2,
-            status: true
+            status: true,
         },
         {
             id: 5,
             name: 'Dining room',
             icon: {
                 selected: urlIconSelected + '/Diningroom.svg',
-                unselected: urlIconUnselected + '/Diningroom.svg'
+                unselected: urlIconUnselected + '/Diningroom.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 1,
-            status: true
+            status: true,
         },
         {
             id: 6,
             name: 'Bathroom',
             icon: {
                 selected: urlIconSelected + '/Bathroom.svg',
-                unselected: urlIconUnselected + '/Bathroom.svg'
+                unselected: urlIconUnselected + '/Bathroom.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 2,
-            status: true
+            status: true,
         },
         {
             id: 7,
             name: 'Garage',
             icon: {
                 selected: urlIconSelected + '/Garage.svg',
-                unselected: urlIconUnselected + '/Garage.svg'
+                unselected: urlIconUnselected + '/Garage.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 3,
-            status: true
-        }
+            status: true,
+        },
     ]);
 
     const [selectingDevice, setSelectingDevice] = useState([
@@ -205,15 +205,15 @@ function Device(props) {
         false,
         false,
         false,
-        false
+        false,
     ]);
 
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
 
-    const handleSelectDevice = id => {
-        setSelectingDevice(selectingDevice =>
+    const handleSelectDevice = (id) => {
+        setSelectingDevice((selectingDevice) =>
             selectingDevice.map((e, index) => (index === id - 1 ? true : false))
         );
     };
@@ -222,10 +222,10 @@ function Device(props) {
         const fetchData = async () => {
             const ledReadAll = await getAllLeds();
             const newDeviceData = deviceData;
-            newDeviceData.map(e => {
+            newDeviceData.map((e) => {
                 if (e.name !== 'Information') {
                     const nameRoom = e.name.toUpperCase().replace(/\s+/g, '');
-                    ledReadAll.map(room => {
+                    ledReadAll.map((room) => {
                         if (room[0] === nameRoom)
                             e.status = room[1].status === 0 ? false : true;
                         return room;
@@ -239,22 +239,20 @@ function Device(props) {
         fetchData();
     }, [deviceData]);
 
-    const handleClickChangeStatus = roomName => {
+    const handleClickChangeStatus = (roomName) => {
         setVisible(true);
         let currentStatus = true;
-        deviceData.map(e => {
+        deviceData.map((e) => {
             if (e.name === roomName) currentStatus = e.status;
             return e;
         });
         // currentStatus
         //     ? setMessage(`${roomName}'s light turned off successfully.`)
         //     : setMessage(`${roomName}'s light turned on successfully.`);
-        currentStatus
-            ? setMessage('Turn off your light successfully.')
-            : setMessage('Turn on your light successfully.');
+        setMessage('Succeeded. Please check your device');
         updateStatusLed(!currentStatus, roomName);
-        setDeviceData(deviceData =>
-            deviceData.map(e => {
+        setDeviceData((deviceData) =>
+            deviceData.map((e) => {
                 if (e.name === roomName) e.status = !currentStatus;
                 return e;
             })
@@ -293,7 +291,7 @@ function Device(props) {
             />
             <div className="room-content-container">
                 {deviceData.map(
-                    e =>
+                    (e) =>
                         selectingDevice[e.id - 1] &&
                         (e.name === 'Information' ? (
                             <DeviceDetails
@@ -322,7 +320,7 @@ function Device(props) {
                 )}
                 <div className="scrolling-wrapper">
                     {deviceData &&
-                        deviceData.map(e => (
+                        deviceData.map((e) => (
                             <div
                                 onClick={() => handleSelectDevice(e.id)}
                                 key={e.id}
@@ -347,7 +345,7 @@ function Device(props) {
                                     <div
                                         style={{
                                             display: 'flex',
-                                            flexDirection: 'column'
+                                            flexDirection: 'column',
                                         }}
                                     >
                                         <img

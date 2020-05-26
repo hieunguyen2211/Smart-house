@@ -21,156 +21,156 @@ function Room(props) {
             name: 'Information',
             icon: {
                 selected: urlIconSelected + '/Information.svg',
-                unselected: urlIconUnselected + '/Information.svg'
+                unselected: urlIconUnselected + '/Information.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Temperature',
                     value: 30,
-                    unit: '°C'
+                    unit: '°C',
                 },
                 {
                     id: 2,
                     name: 'Humidity',
                     value: 50,
-                    unit: '%'
+                    unit: '%',
                 },
                 {
                     id: 3,
                     name: 'Gas Condition',
-                    value: true
+                    value: true,
                 },
                 {
                     id: 4,
                     name: 'Pressure',
                     value: 0.9,
-                    unit: 'Bar'
-                }
+                    unit: 'Bar',
+                },
             ],
             value: 0,
-            status: false
+            status: false,
         },
         {
             id: 2,
             name: 'Fan',
             icon: {
                 selected: urlIconSelected + '/Fan.svg',
-                unselected: urlIconUnselected + '/Fan.svg'
+                unselected: urlIconUnselected + '/Fan.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 0,
-            status: false
+            status: false,
         },
         {
             id: 3,
             name: 'Light',
             icon: {
                 selected: urlIconSelected + '/Light.svg',
-                unselected: urlIconUnselected + '/Light.svg'
+                unselected: urlIconUnselected + '/Light.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 1,
-            status: false
+            status: false,
         },
         {
             id: 4,
             name: 'Windows',
             icon: {
                 selected: urlIconSelected + '/Windows.svg',
-                unselected: urlIconUnselected + '/Windows.svg'
+                unselected: urlIconUnselected + '/Windows.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 2,
-            status: true
+            status: true,
         },
         {
             id: 5,
             name: 'Door',
             icon: {
                 selected: urlIconSelected + '/Door.svg',
-                unselected: urlIconUnselected + '/Door.svg'
+                unselected: urlIconUnselected + '/Door.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 1,
-            status: true
+            status: true,
         },
         {
             id: 6,
             name: 'Curtains',
             icon: {
                 selected: urlIconSelected + '/Curtains.svg',
-                unselected: urlIconUnselected + '/Curtains.svg'
+                unselected: urlIconUnselected + '/Curtains.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
             value: 3,
-            status: true
-        }
+            status: true,
+        },
     ]);
     const [selectingDevice, setSelectingDevice] = useState([
         true,
@@ -178,7 +178,7 @@ function Room(props) {
         false,
         false,
         false,
-        false
+        false,
     ]);
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -200,8 +200,8 @@ function Room(props) {
         fetchData();
     }, [deviceData, props.roomName]);
 
-    const handleSelectDevice = id => {
-        setSelectingDevice(selectingDevice =>
+    const handleSelectDevice = (id) => {
+        setSelectingDevice((selectingDevice) =>
             selectingDevice.map((e, index) => (index === id - 1 ? true : false))
         );
     };
@@ -209,12 +209,13 @@ function Room(props) {
     const handleClickChangeStatus = () => {
         setVisible(true);
         const currentStatus = deviceData[2].status;
-        currentStatus
-            ? setMessage('Turn off your light successfully.')
-            : setMessage('Turn on your light successfully.');
+        // currentStatus
+        //     ? setMessage('Turn off your light successfully.')
+        //     : setMessage('Turn on your light successfully.');
+        setMessage('Succeeded. Please check your device');
         updateStatusLed(!currentStatus, props.roomName);
-        setDeviceData(deviceData =>
-            deviceData.map(e => {
+        setDeviceData((deviceData) =>
+            deviceData.map((e) => {
                 if (e.id === 3) e.status = !currentStatus;
                 return e;
             })
@@ -254,7 +255,7 @@ function Room(props) {
             />
             <div className="room-content-container">
                 {deviceData.map(
-                    e =>
+                    (e) =>
                         selectingDevice[e.id - 1] &&
                         (e.name === 'Information' ? (
                             <DeviceDetails
@@ -283,7 +284,7 @@ function Room(props) {
                 )}
                 <div className="scrolling-wrapper">
                     {deviceData &&
-                        deviceData.map(e => (
+                        deviceData.map((e) => (
                             <div
                                 onClick={() => handleSelectDevice(e.id)}
                                 key={e.id}
@@ -308,7 +309,7 @@ function Room(props) {
                                     <div
                                         style={{
                                             display: 'flex',
-                                            flexDirection: 'column'
+                                            flexDirection: 'column',
                                         }}
                                     >
                                         <img

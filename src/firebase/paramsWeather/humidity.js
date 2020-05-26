@@ -11,7 +11,7 @@ export const getCurrentHumidity = async () => {
         .orderByChild('createdAt')
         .limitToLast(1)
         .once('value');
-    snapshot.forEach(child => {
+    snapshot.forEach((child) => {
         result = child.val();
     });
     return result;

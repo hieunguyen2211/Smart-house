@@ -10,7 +10,7 @@ export const getAllLeds = async () => {
     return Object.entries(snapshot.val());
 };
 
-export const getCurrentLed = async roomName => {
+export const getCurrentLed = async (roomName) => {
     const path = `/leds/${roomName.toUpperCase().replace(/\s+/g, '')}`;
     const eventref = database.ref(path);
     const snapshot = await eventref.once('value');
@@ -19,7 +19,7 @@ export const getCurrentLed = async roomName => {
 
 export const updateStatusLed = (status, roomName) => {
     const statusObj = {
-        status: status ? 1 : 0
+        status: status ? 1 : 0,
     };
 
     const updates = {};
