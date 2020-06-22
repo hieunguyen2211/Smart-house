@@ -1,8 +1,8 @@
-import React from 'react';
-import { Modal } from 'antd';
-import FadeLoader from 'react-spinners/FadeLoader';
+import React from "react";
+import { Modal } from "antd";
+import FadeLoader from "react-spinners/FadeLoader";
 function Announcement(props) {
-    return props.message === 'Processing' ? (
+    return props.message === "Processing" ? (
         <Modal
             visible={props.visible}
             centered={true}
@@ -13,20 +13,22 @@ function Announcement(props) {
         >
             <div
                 style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    alignItems: "center",
                 }}
             >
-                <p style={props.styleMessage}>{props.message}</p>
+                <p style={{ color: "white", fontSize: "3vh" }}>
+                    {props.message}
+                </p>
                 <br />
                 <FadeLoader
                     height={15}
                     width={5}
                     loading={true}
-                    color={'green'}
+                    color={"white"}
                 />
             </div>
         </Modal>
@@ -40,9 +42,9 @@ function Announcement(props) {
             footer={
                 <div
                     onClick={props.handleToggleModal}
-                    style={{ display: 'flex', justifyContent: 'center' }}
+                    style={{ display: "flex", justifyContent: "center" }}
                 >
-                    <span style={{ color: 'black', fontSize: '3vh' }}>OK</span>
+                    <span style={{ color: "black", fontSize: "3vh" }}>OK</span>
                 </div>
             }
         >

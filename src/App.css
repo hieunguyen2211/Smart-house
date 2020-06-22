@@ -8,21 +8,21 @@ p {
 }
 
 .ant-switch-checked {
-    background-color: #0EBEF5 !important;
+    background-color: #0ebef5 !important;
 }
 
 .ant-select-selection:hover {
-    border-color: #0EBEF5 !important;
+    border-color: #0ebef5 !important;
     box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
 }
 
 .ant-select-selection:focus {
-    border-color: #0EBEF5 !important;
+    border-color: #0ebef5 !important;
     box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
 }
 
 .ant-select-selection:active {
-    border-color: #0EBEF5 !important;
+    border-color: #0ebef5 !important;
     box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
 }
 
@@ -40,7 +40,7 @@ p {
 
 .page-container {
     text-align: center;
-    background: #e9ebee;
+    background: #06294a;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -50,10 +50,9 @@ p {
 .page-content-wrapper {
     position: fixed;
     width: 100%;
-    top: 6vh;
-    height: 84vh;
+    top: 11vh;
+    height: 79vh;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
@@ -72,4 +71,17 @@ a:hover {
 a:focus {
     text-decoration: none;
     color: black !important;
+}
+.ant-switch-checked {
+    background-color: #2ae971 !important;
+}
+
+.ant-modal-content {
+    background-color: #06294a !important;
+}
+
+.ant-input-group-addon {
+    background-color: #055680 !important;
+    border: #055680 !important;
+    color: white !important;
 }

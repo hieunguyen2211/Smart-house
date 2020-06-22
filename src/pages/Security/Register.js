@@ -148,11 +148,14 @@ export default function Register() {
                                     }
                                 }, 50);
                             }}
+                            className="btn-submit"
                         >
                             Submit
                         </Button>
                     ) : (
-                        <Button disabled>Submit</Button>
+                        <Button disabled className="btn-submit">
+                            Submit
+                        </Button>
                     )}
                 </div>
 

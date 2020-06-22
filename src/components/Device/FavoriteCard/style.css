@@ -1,0 +1,56 @@
+.favor-device-item {
+    width: 40vw;
+    background: white;
+    border-radius: 10px;
+    background: rgb(30, 61, 116);
+    background: linear-gradient(
+        90deg,
+        rgba(30, 61, 116, 1) 0%,
+        rgba(41, 81, 150, 1) 63%
+    );
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 3vw;
+    margin-top: 2vh;
+}
+
+.container-disabled {
+    background: #073953;
+}
+
+.item-content {
+    width: 92%;
+    display: flex;
+    height: 70%;
+    border-right: 2px solid #00e5cf;
+    align-items: center;
+}
+
+.content-disabled {
+    border-right: none;
+}
+
+.item-content .item-icon {
+    padding: 0 2vw 0 4vw;
+    width: 12vw;
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.info-section > p {
+    display: flex;
+    display: inline-block;
+    color: white;
+    text-transform: capitalize;
+}
+
+.info-section .room-name {
+    font-size: 10px;
+    color: #afbbd1;
+}

@@ -1,95 +1,186 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchWeatherRequest } from '../../redux/currentWeather/currentWeatherAction';
-import NavigationBar from '../../components/Navigation/NavigationBar';
-import MenuSquare from '../../components/Menu/MenuSquare';
-import HomePageHeader from '../../components/Header/WeatherParameters';
-import './Home.css';
+import React, { useState, useEffect } from "react";
+import NavigationBar from "../../components/Navigation/NavigationBar";
+import FavoriteCardCol from "../../components/Device/FavoriteCardCol";
+import { getAllLeds, updateStatusLed } from "../../firebase/devices/led";
+import SyncLoader from "react-spinners/SyncLoader";
+import RoomCard from "../../components/Room/RoomCard";
+import "./Home.css";
 
-import SyncLoader from 'react-spinners/SyncLoader';
-
-const data = [
-    {
-        id: 1,
-        rowData: [
+export default function Home() {
+    const [loading, setLoading] = useState(true);
+    const [deviceData, setDeviceData] = useState([
+        [
             {
                 id: 1,
-                name: 'Rooms',
-                iconUrl: '/main/Home/rooms',
-                path: '/rooms'
+                name: "Light 1",
+                room: "Living room",
+                status: false,
             },
             {
                 id: 2,
-                name: 'Devices',
-                iconUrl: '/main/Home/devices',
-                path: '/devices'
-            }
-        ]
-    },
-    {
-        id: 2,
-        rowData: [
+                name: "Light 2",
+                room: "Living room",
+                status: false,
+            },
+        ],
+        [
             {
                 id: 3,
-                name: 'Modes',
-                iconUrl: '/main/Home/modes',
-                path: '/modes'
+                name: "Light",
+                room: "Kitchen",
+                status: false,
             },
             {
                 id: 4,
-                name: 'Security',
-                iconUrl: '/main/Home/security',
-                path: '/security'
-            }
-        ]
-    },
-    {
-        id: 3,
-        rowData: [
-            {
-                id: 4,
-                name: 'Activities',
-                iconUrl: '/main/Home/activities',
-                path: '/home'
+                name: "Light",
+                room: "Bedroom",
+                status: false,
             },
+        ],
+        [
             {
                 id: 5,
-                name: 'Statistics',
-                iconUrl: '/main/Home/statistics',
-                path: '/home'
-            }
-        ]
-    }
-];
+                name: "Light",
+                room: "Bathroom",
+                status: false,
+            },
+            {
+                id: 6,
+                name: "Main Door",
+                room: "Living room",
+                status: false,
+            },
+        ],
+        [
+            {
+                id: 7,
+                name: "Light",
+                room: "Garage",
+                status: false,
+            },
+            {
+                id: 8,
+                name: "Door",
+                room: "Garage",
+                status: false,
+            },
+        ],
+    ]);
 
-function Home() {
-    const currentWeatherData = useSelector(state => state.currentWeather);
-    const [loading, setLoading] = useState(true);
-    const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchWeatherRequest());
-        setTimeout(() => {
+        const fetchData = async () => {
+            const ledReadAll = await getAllLeds();
+            const newDeviceData = deviceData;
+            newDeviceData.map((e) =>
+                e.map((d) => {
+                    let room_d = d.room;
+                    if (d.name === "Light 1") room_d = "livingroom1";
+                    if (d.name === "Light 2") room_d = "livingroom2";
+                    const nameRoom = room_d.toUpperCase().replace(/\s/g, "");
+                    ledReadAll.map((room) => {
+                        if (room[0] === nameRoom)
+                            d.status = room[1].status === 0 ? false : true;
+                        return room;
+                    });
+                    return d;
+                })
+            );
+            setDeviceData(newDeviceData);
             setLoading(false);
-        }, 500);
-    }, [dispatch]);
-    // return loading ? (
-    //     <div className="page-container" style={{ background: 'white' }}>
-    //         <div className="page-content-wrapper">
-    //             <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
-    //         </div>
-    //         <NavigationBar />
-    //     </div>
-    // ) : (
-    return (
-        <div className="page-container">
-            <HomePageHeader data={currentWeatherData.currentWeather} />
-            <div className="home-menu-wrapper">
-                <MenuSquare data={data} subTitle={false} heightCard="17vh" />
+        };
+        fetchData();
+    }, [deviceData]);
+
+    const handleClickChangeStatus = (roomName) => {
+        let currentStatus = false;
+        deviceData.map((e) =>
+            e.map((d) => {
+                let room_d = d.room;
+                if (d.name === "Light 1") room_d = "livingroom1";
+                if (d.name === "Light 2") room_d = "livingroom2";
+                if (room_d === roomName) currentStatus = d.status;
+                return d;
+            })
+        );
+
+        updateStatusLed(!currentStatus, roomName);
+        setDeviceData((deviceData) =>
+            deviceData.map((e) =>
+                e.map((d) => {
+                    let room_d = d.room;
+                    if (d.name === "Light 1") room_d = "livingroom1";
+                    if (d.name === "Light 2") room_d = "livingroom2";
+                    if (room_d === roomName) d.status = !currentStatus;
+                    return d;
+                })
+            )
+        );
+    };
+
+    const getNameIcon = (nameDevice) => {
+        if (nameDevice.includes("Light")) return "light";
+        if (nameDevice.includes("Door")) return "door";
+    };
+
+    return loading ? (
+        <div className="main-page-container">
+            <div
+                className="page-content-wrapper"
+                style={{ justifyContent: "center" }}
+            >
+                <SyncLoader size={20} color={"white"} loading={loading} />
             </div>
 
             <NavigationBar />
         </div>
+    ) : (
+        <div className="main-page-container">
+            <div className="main-page-content">
+                <div className="image">
+                    <div className="image-overlay">
+                        <div className="greeting-section">
+                            <p className="greeting">Good Morning,</p>
+                            <p className="greeting-name">Phuong Hieu</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="device-section">
+                    <div className="favor-device-section">
+                        Favourite devices
+                        <div className="content-wrapper favor-device-content">
+                            {deviceData.map((e) => (
+                                <FavoriteCardCol
+                                    key={e[0].id}
+                                    nameIcon1={getNameIcon(e[0].name)}
+                                    nameDevice1={e[0].name}
+                                    room1={e[0].room}
+                                    disabledRow1={!e[0].status}
+                                    onClickRow1={handleClickChangeStatus}
+                                    nameIcon2={getNameIcon(e[1].name)}
+                                    nameDevice2={e[1].name}
+                                    room2={e[1].room}
+                                    disabledRow2={!e[1].status}
+                                    onClickRow2={handleClickChangeStatus}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="room-section">
+                    <div className="room-section-wrapper">
+                        Rooms
+                        <div className="content-wrapper">
+                            <RoomCard room="living room" amountDevice="3" />
+                            <RoomCard room="kitchen" amountDevice="1" />
+                            <RoomCard room="bedroom" amountDevice="1" />
+                            <RoomCard room="bathroom" amountDevice="1" />
+                            <RoomCard room="garage" amountDevice="2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <NavigationBar />
+        </div>
     );
 }
-
-export default Home;

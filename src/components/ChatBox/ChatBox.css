@@ -14,7 +14,11 @@
 
 .chatbox-unit-message {
     max-width: 65vw;
-    background: #3a7bd5;
+    background: linear-gradient(
+        90deg,
+        rgba(30, 61, 116, 1) 0%,
+        rgba(41, 81, 150, 1) 63%
+    );
     border-radius: 1vw;
     color: white;
     padding: 1vh;

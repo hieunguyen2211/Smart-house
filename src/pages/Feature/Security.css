@@ -1,11 +1,4 @@
-.security-notification-badge {
-    margin-right: 4vw;
-    padding: 0;
-    height: 4vh;
-    width: 11vw;
-    background: red;
-    border: 0;
-    color: white;
-    font-weight: bold;
-    border-radius: 1vw;
+.icon-task {
+    font-size: 26px;
+    color: #00e5cf !important;
 }

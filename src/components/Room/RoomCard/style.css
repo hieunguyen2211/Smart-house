@@ -1,0 +1,34 @@
+.room-card-container {
+    background: #055680;
+    width: 30vw;
+    height: 18vh;
+    margin-top: 1vh;
+    border-radius: 10px;
+    flex-shrink: 0;
+    margin-right: 3vw;
+}
+
+.room-image {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 62%;
+}
+
+.room-infor-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 3vw;
+    margin-top: 4px;
+}
+
+.room-name {
+    color: white;
+    text-transform: capitalize;
+}
+
+.amount-device {
+    color: #afbbd1;
+    font-size: 10px;
+}

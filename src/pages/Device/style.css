@@ -1,0 +1,14 @@
+.device-page-content-wrapper {
+    position: fixed;
+    width: 100%;
+    top: 11vh;
+    height: 79vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.device-page-content-wrapper::-webkit-scrollbar {
+    display: none;
+}

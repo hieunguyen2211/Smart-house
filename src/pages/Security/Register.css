@@ -5,3 +5,10 @@
     height: 64vh;
     justify-content: space-between;
 }
+
+.btn-submit {
+    background: #055680 !important;
+    border: none !important;
+    color: white !important;
+    font-size: 16px !important;
+}
