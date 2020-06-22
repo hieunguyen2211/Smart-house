@@ -36,6 +36,7 @@ import Camera from './pages/Device/Camera';
 //Security
 import FaceRecog from './pages/Security/FaceRecog';
 import PinCode from './pages/Security/PinCode';
+import Register from './pages/Security/Register';
 
 //Others
 import ProfileDetailPage from './pages/Others/ProfileDetail';
@@ -98,6 +99,7 @@ function App() {
                     />
 
                     <Route path="/security/pinCode" exact component={PinCode} />
+                    <Route path="/security/register" exact component={Register} />
                     {/*----------- Security -------------*/}
 
                     {/*----------- Others -------------*/}

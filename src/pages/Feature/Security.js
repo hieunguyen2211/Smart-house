@@ -60,8 +60,9 @@ function Security() {
                     process.env.PUBLIC_URL + '/icons/security/notification.svg',
                 style: styleIcon
             },
-            title: 'Notification',
-            subTitle: 'Notifications about your visitors '
+            title: 'Register',
+            subTitle: 'Register a new face to unlock your home',
+            path: '/security/register'
             // subComponent: (
             //     <button className="security-notification-badge">10</button>
             // )

@@ -2,11 +2,11 @@
     position: absolute;
     /* left: 19vw;
     top: 24vh; */
-    left: 12vw;
-    top: 15vh;
+    left: 13vw;
+    top: 16vh;
 }
 
-@media only screen and (device-width : 414px) and (device-height : 736px) and (-webkit-device-pixel-ratio : 3) {
+@media only screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
     .Canvas {
         position: absolute;
         /* left: 19vw;
