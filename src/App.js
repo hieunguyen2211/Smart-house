@@ -41,11 +41,14 @@ import PinCode from './pages/Security/PinCode';
 import ProfileDetailPage from './pages/Others/ProfileDetail';
 import ChangePasswordPage from './pages/Others/ChangePassword';
 
+import TestPage from './pages/Test';
+
 function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
                 <Switch>
+                    <Route path="/test" exact component={TestPage} />
                     <Route path="/" exact component={LoginPage} />
                     <Route path="/register" exact component={RegisterPage} />
                     <Route path="/speech" exact component={SpeechPage} />

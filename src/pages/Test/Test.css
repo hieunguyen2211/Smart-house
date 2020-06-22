@@ -1,0 +1,18 @@
+.page-init-container {
+    height: 100vh;
+}
+
+.image {
+    background-image: url('../../images/background/image.jpeg');
+    width: 100vw;
+    background-size: cover;
+    height: 60vh;
+    position: relative;
+}
+
+.image-overlay {
+    position: absolute;
+    width: 100vw;
+    height: 20vh;
+    bottom: 0;
+}
