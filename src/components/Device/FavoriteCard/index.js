@@ -20,11 +20,18 @@ export default function FavouriteCard(props) {
         <div
             className={classContainer}
             onClick={() => {
-                if (props.nameDevice === "Light 1")
-                    return props.onClick("livingroom1");
-                if (props.nameDevice === "Light 2")
-                    return props.onClick("livingroom2");
-                return props.onClick(props.roomName);
+                if (props.nameDevice.includes("Light")) {
+                    if (props.nameDevice === "Light 1")
+                        return props.onClick("livingroom1", true);
+                    if (props.nameDevice === "Light 2")
+                        return props.onClick("livingroom2", true);
+                    return props.onClick(props.roomName, true);
+                }
+                if (props.nameDevice.includes("Door")) {
+                    if (props.roomName === "Garage")
+                        return props.onClick("GARAGEDOOR", false);
+                    return props.onClick(props.nameDevice, false);
+                }
             }}
         >
             <div className={classItem}>

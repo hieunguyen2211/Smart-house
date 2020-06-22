@@ -17,11 +17,18 @@ export default function RoomDetailCard(props) {
                         isMinimized
                         key={e.id}
                         onClick={() => {
-                            if (e.name === "Light 1")
-                                return props.onClick("livingroom1");
-                            if (e.name === "Light 2")
-                                return props.onClick("livingroom2");
-                            return props.onClick(props.roomName);
+                            if (e.name.includes("Light")) {
+                                if (e.name === "Light 1")
+                                    return props.onClick("livingroom1", true);
+                                if (e.name === "Light 2")
+                                    return props.onClick("livingroom2", true);
+                                return props.onClick(props.roomName, true);
+                            }
+                            if (e.name.includes("Door")) {
+                                if (props.roomName === "Garage")
+                                    return props.onClick("GARAGEDOOR", false);
+                                return props.onClick(e.name, false);
+                            }
                         }}
                     />
                 ))}

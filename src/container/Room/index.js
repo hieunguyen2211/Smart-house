@@ -27,9 +27,33 @@ export default function Room(props) {
                     <div className="room-detail-list-device-section">
                         {props.data.map((e) => (
                             <DeviceDetailCard
+                                key={e.id}
                                 iconName={e.iconName}
                                 deviceName={e.name}
                                 status={e.status}
+                                onClick={() => {
+                                    if (e.name.includes("Light")) {
+                                        if (e.name === "Light 1")
+                                            return props.onClick(
+                                                "livingroom1",
+                                                true
+                                            );
+                                        if (e.name === "Light 2")
+                                            return props.onClick(
+                                                "livingroom2",
+                                                true
+                                            );
+                                        return props.onClick(props.room, true);
+                                    }
+                                    if (e.name.includes("Door")) {
+                                        if (e.name === "Garage")
+                                            return props.onClick(
+                                                "GARAGEDOOR",
+                                                false
+                                            );
+                                        return props.onClick(e.name, false);
+                                    }
+                                }}
                             />
                         ))}
                     </div>

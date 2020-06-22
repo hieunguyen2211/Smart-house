@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavigationBar from "../../components/Navigation/NavigationBar";
 import FavoriteCardCol from "../../components/Device/FavoriteCardCol";
 import { getAllLeds, updateStatusLed } from "../../firebase/devices/led";
+import { getAllServos, updateStatusServo } from "../../firebase/devices/servo";
 import SyncLoader from "react-spinners/SyncLoader";
 import RoomCard from "../../components/Room/RoomCard";
 import "./Home.css";
@@ -70,18 +71,31 @@ export default function Home() {
     useEffect(() => {
         const fetchData = async () => {
             const ledReadAll = await getAllLeds();
+            const servoReadAll = await getAllServos();
             const newDeviceData = deviceData;
             newDeviceData.map((e) =>
                 e.map((d) => {
-                    let room_d = d.room;
-                    if (d.name === "Light 1") room_d = "livingroom1";
-                    if (d.name === "Light 2") room_d = "livingroom2";
-                    const nameRoom = room_d.toUpperCase().replace(/\s/g, "");
-                    ledReadAll.map((room) => {
-                        if (room[0] === nameRoom)
-                            d.status = room[1].status === 0 ? false : true;
-                        return room;
-                    });
+                    if (d.name.includes("Light")) {
+                        let room_d = d.room;
+                        if (d.name === "Light 1") room_d = "livingroom1";
+                        if (d.name === "Light 2") room_d = "livingroom2";
+                        const nameRoom = room_d
+                            .toUpperCase()
+                            .replace(/\s/g, "");
+                        ledReadAll.map((room) => {
+                            if (room[0] === nameRoom)
+                                d.status = room[1].status === 0 ? false : true;
+                            return room;
+                        });
+                    } else if (d.name.includes("Door")) {
+                        let nameServo = d.name.toUpperCase().replace(/\s/g, "");
+                        if (d.room === "Garage") nameServo = "GARAGEDOOR";
+                        servoReadAll.map((servo) => {
+                            if (servo[0] === nameServo)
+                                d.status = servo[1].status === 0 ? false : true;
+                            return servo;
+                        });
+                    }
                     return d;
                 })
             );
@@ -91,30 +105,59 @@ export default function Home() {
         fetchData();
     }, [deviceData]);
 
-    const handleClickChangeStatus = (roomName) => {
+    const handleClickChangeStatus = (roomName, isLed) => {
         let currentStatus = false;
-        deviceData.map((e) =>
-            e.map((d) => {
-                let room_d = d.room;
-                if (d.name === "Light 1") room_d = "livingroom1";
-                if (d.name === "Light 2") room_d = "livingroom2";
-                if (room_d === roomName) currentStatus = d.status;
-                return d;
-            })
-        );
 
-        updateStatusLed(!currentStatus, roomName);
-        setDeviceData((deviceData) =>
+        if (isLed) {
             deviceData.map((e) =>
                 e.map((d) => {
                     let room_d = d.room;
                     if (d.name === "Light 1") room_d = "livingroom1";
                     if (d.name === "Light 2") room_d = "livingroom2";
-                    if (room_d === roomName) d.status = !currentStatus;
+                    if (room_d === roomName && !d.name.includes("Door"))
+                        currentStatus = d.status;
                     return d;
                 })
-            )
-        );
+            );
+
+            updateStatusLed(!currentStatus, roomName);
+            setDeviceData((deviceData) =>
+                deviceData.map((e) =>
+                    e.map((d) => {
+                        let room_d = d.room;
+                        if (d.name === "Light 1") room_d = "livingroom1";
+                        if (d.name === "Light 2") room_d = "livingroom2";
+                        if (room_d === roomName && !d.name.includes("Door"))
+                            d.status = !currentStatus;
+                        return d;
+                    })
+                )
+            );
+        } else {
+            const servoName = roomName;
+            deviceData.map((e) =>
+                e.map((d) => {
+                    let nameServo = d.name;
+                    if (d.room === "Garage" && !d.name.includes("Light"))
+                        nameServo = "GARAGEDOOR";
+                    if (nameServo === servoName) currentStatus = d.status;
+                    return d;
+                })
+            );
+
+            updateStatusServo(!currentStatus, servoName);
+            setDeviceData((deviceData) =>
+                deviceData.map((e) =>
+                    e.map((d) => {
+                        let nameServo = d.name;
+                        if (d.room === "Garage" && !d.name.includes("Light"))
+                            nameServo = "GARAGEDOOR";
+                        if (nameServo === servoName) d.status = !currentStatus;
+                        return d;
+                    })
+                )
+            );
+        }
     };
 
     const getNameIcon = (nameDevice) => {
