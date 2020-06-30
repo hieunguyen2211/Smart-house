@@ -59,8 +59,6 @@ function Devices() {
   };
 
   const handleCommand = async (command) => {
-    console.log(command);
-
     if (command.length > 0) {
       command = command.toLowerCase();
       if (command.indexOf('light') !== -1) {
