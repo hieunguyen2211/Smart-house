@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ControlHeader from '../../components/Header/Control';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import RoomDetailCard from '../../components/Room/DetailCard';
+import { Link } from 'react-router-dom';
 import { getAllLeds, updateStatusLed } from '../../firebase/devices/led';
 import { getAllServos, updateStatusServo } from '../../firebase/devices/servo';
 import SyncLoader from 'react-spinners/SyncLoader';
@@ -206,7 +207,28 @@ export default function DevicePage() {
             onClick={handleClickChangeStatus}
           />
         ))}
+        <div className="room-detail-container">
+          <div className="title-section">
+            <p className="title">Others</p>
+          </div>
+          <Link className="room-detail-list-device" to="/devices/camera">
+            <div className="device-detail-card">
+              <div className="device-header">
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    '/icons/devices/filled/active/camera.svg'
+                  }
+                  className="item-icon"
+                  alt="icon"
+                />
+                <div className="title">Camera</div>
+              </div>
+            </div>
+          </Link>
+        </div>
       </div>
+
       <NavigationBar />
     </div>
   );

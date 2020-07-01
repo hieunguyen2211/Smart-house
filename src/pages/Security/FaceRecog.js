@@ -3,7 +3,10 @@ import Webcam from 'react-webcam';
 import ControlHeader from '../../components/Header/Control';
 import NavigationBar from '../../components/Navigation/NavigationBar';
 import Announcement from '../../components/Modal/Announcement';
-import { updateStatusServo } from '../../firebase/devices/servo';
+import {
+  updateStatusServo,
+  getCurrentServo,
+} from '../../firebase/devices/servo';
 import { Rect, Layer, Stage } from 'react-konva';
 import { Icon } from 'antd';
 import { API_AI_URL } from '../../api/config.js';
@@ -54,6 +57,10 @@ function Security() {
     setImages((images) => [...images, blob]);
   };
 
+  const getStatusServo = async (data) => {
+    data = await getCurrentServo('MAINDOOR');
+  };
+
   useEffect(() => {
     const postData = () => {
       setMessage('Processing');
@@ -70,7 +77,7 @@ function Security() {
         body: formData,
       })
         .then((res) => res.json())
-        .then((res) => {
+        .then(async (res) => {
           if (res.code === 500) {
             setMessage('Server Error. Try again');
             setIsSucceeded(false);
@@ -83,7 +90,8 @@ function Security() {
               const firstLetter = name.charAt(0).toUpperCase();
               name = firstLetter + name.slice(1);
               setMessage('Welcome Home, ' + name);
-              updateStatusServo(1, 'MAINDOOR');
+              const servo = await getCurrentServo('MAINDOOR');
+              servo.status === 0 && updateStatusServo(1, 'MAINDOOR');
               setIsSucceeded(true);
             }
           } else {
