@@ -236,12 +236,12 @@ function Devices() {
                 <img
                   src={urlSendIcon}
                   alt="icon"
-                  style={{ height: '3vh' }}
+                  style={{ height: '20px' }}
                   onClick={submitText}
                 />
               ) : (
                 <AudioFilled
-                  style={{ fontSize: '3vh', color: '#204079' }}
+                  style={{ fontSize: '20px', color: '#204079' }}
                   onClick={() => voiceCommands()}
                 />
               )

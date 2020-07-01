@@ -134,12 +134,13 @@ export default function DevicePage() {
         e.devices.map((d) => {
           if (d.name === 'Light 1') room_d = 'livingroom1';
           if (d.name === 'Light 2') room_d = 'livingroom2';
-          if (room_d === roomName) currentStatus = d.status;
+          if (room_d === roomName && d.name !== 'Main Door') {
+            currentStatus = d.status;
+          }
           return d;
         });
         return e;
       });
-
       updateStatusLed(!currentStatus, roomName);
       setDeviceData((deviceData) =>
         deviceData.map((e) => {

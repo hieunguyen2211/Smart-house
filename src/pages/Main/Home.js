@@ -222,6 +222,7 @@ export default function Home() {
                   <FontAwesomeIcon
                     icon={faThermometerHalf}
                     className="param-weather-icon"
+                    style={{ marginRight: '3vw' }}
                   />
                   {sensorData[1].value} °C
                 </div>

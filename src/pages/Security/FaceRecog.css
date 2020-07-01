@@ -1,19 +1,19 @@
 .Canvas {
-    position: absolute;
-    /* left: 19vw;
+  position: absolute;
+  /* left: 19vw;
     top: 24vh; */
-    left: 13vw;
-    top: 16vh;
+  left: 13vw;
+  top: 8vh;
 }
 
 @media only screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
-    .Canvas {
-        position: absolute;
-        /* left: 19vw;
+  .Canvas {
+    position: absolute;
+    /* left: 19vw;
             top: 24vh; */
-        left: 18vw;
-        top: 16vh;
-    }
+    left: 18vw;
+    top: 16vh;
+  }
 }
 
 /* 
@@ -29,11 +29,11 @@
 } */
 
 .security-icon-power {
-    background: white;
-    border-radius: 50%;
-    color: #055680 !important;
-    font-size: 20vw;
-    position: absolute;
-    bottom: 6vh;
-    border: 2px solid white;
+  background: white;
+  border-radius: 50%;
+  color: #055680 !important;
+  font-size: 20vw;
+  position: absolute;
+  bottom: 6vh;
+  border: 2px solid white;
 }
