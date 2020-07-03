@@ -1,26 +1,31 @@
 .navigation-item-container {
-    background-color: white;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  background-color: #2a5298;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #2a5298;
 }
 
 .navigation-item-icon-disable {
-    color: black !important;
-    font-size: 7vw;
+  color: #96a4c5 !important;
+  font-size: 25px;
 }
 
 .navigation-item-icon-active {
-    color: #f63 !important;
-    font-size: 7vw;
+  color: white !important;
+  font-size: 25px;
 }
 
 .navigation-item-title-active {
-    color: #f63;
+  color: white;
 }
 
 .navigation-item-title-disable {
-    color: black;
+  color: #96a4c5;
+}
+
+.navigation-item-container > p {
+  font-size: 12px;
 }

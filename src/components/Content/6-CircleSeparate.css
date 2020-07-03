@@ -1,0 +1,119 @@
+.circle-6-segment {
+    position: relative;
+    padding: 0;
+    margin: 1em auto;
+    width: 40vh;
+    height: 40vh;
+    border-radius: 50%;
+    list-style: none;
+    overflow: hidden;
+}
+
+.circle-6-segment li {
+    overflow: hidden;
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 100%;
+    transform-origin: 0% 100%;
+    border: 4px solid white;
+}
+
+.circle-6-segment li:first-child {
+    transform: rotate(0deg) skewY(-30deg);
+}
+
+.circle-6-segment li:nth-child(2) {
+    transform: rotate(60deg) skewY(-30deg);
+}
+
+.circle-6-segment li:nth-child(3) {
+    transform: rotate(120deg) skewY(-30deg);
+}
+
+.circle-6-segment li:nth-child(4) {
+    transform: rotate(180deg) skewY(-30deg);
+}
+
+.circle-6-segment li:nth-child(5) {
+    transform: rotate(240deg) skewY(-30deg);
+}
+
+.circle-6-segment li:nth-child(6) {
+    transform: rotate(300deg) skewY(-30deg);
+}
+
+@media only screen and (device-width : 414px) and (device-height : 736px) and (-webkit-device-pixel-ratio : 3) {
+    .circle-6-segment-icon-bedroom {
+        top: 20vh !important;
+        left: 57vw !important;
+    }
+
+    .circle-6-segment-icon-livingroom {
+        top: 31vh !important;
+        left: 67vw !important;
+    }
+
+    .circle-6-segment-icon-kitchen {
+        top: 43vh !important;
+        left: 57vw !important;
+    }
+
+    .circle-6-segment-icon-diningroom {
+        top: 43vh !important;
+        left: 33vw !important;
+    }
+
+    .circle-6-segment-icon-bathroom {
+        top: 31vh !important;
+        left: 23vw !important;
+    }
+
+    .circle-6-segment-icon-garage {
+        top: 20vh !important;
+        left: 33vw !important;
+    }
+}
+
+.circle-6-segment-icon-bedroom {
+    position: absolute;
+    z-index: 1;
+    top: 19vh;
+    left: 57vw;
+}
+
+.circle-6-segment-icon-livingroom {
+    position: absolute;
+    z-index: 1;
+    top: 31vh;
+    left: 68vw;
+}
+
+.circle-6-segment-icon-kitchen {
+    position: absolute;
+    z-index: 1;
+    top: 43vh;
+    left: 56vw;
+}
+
+.circle-6-segment-icon-diningroom {
+    position: absolute;
+    z-index: 1;
+    top: 43vh;
+    left: 32vw;
+}
+
+.circle-6-segment-icon-bathroom {
+    position: absolute;
+    z-index: 1;
+    top: 31vh;
+    left: 23vw;
+}
+
+.circle-6-segment-icon-garage {
+    position: absolute;
+    z-index: 1;
+    top: 19vh;
+    left: 32vw;
+}

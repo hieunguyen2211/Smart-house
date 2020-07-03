@@ -9,14 +9,18 @@ const data = [
             {
                 id: 1,
                 name: 'Bedroom',
-                iconUrl: '/rooms/bed',
-                path: '/rooms/bedroom'
+                iconUrl: '/rooms/color/bed',
+                path: '/rooms/bedroom',
+                amount: 5,
+                unit: 'Devices'
             },
             {
                 id: 2,
                 name: 'Living Room',
-                iconUrl: '/rooms/living',
-                path: '/rooms/livingroom'
+                iconUrl: '/rooms/color/living',
+                path: '/rooms/livingroom',
+                amount: 5,
+                unit: 'Devices'
             }
         ],
         id: 1
@@ -26,14 +30,18 @@ const data = [
             {
                 id: 3,
                 name: 'Kitchen',
-                iconUrl: '/rooms/kitchen',
-                path: '/rooms/kitchen'
+                iconUrl: '/rooms/color/kitchen',
+                path: '/rooms/kitchen',
+                amount: 5,
+                unit: 'Devices'
             },
             {
                 id: 4,
                 name: 'Dining Room',
-                iconUrl: '/rooms/dining',
-                path: '/rooms/diningroom'
+                iconUrl: '/rooms/color/dining',
+                path: '/rooms/diningroom',
+                amount: 5,
+                unit: 'Devices'
             }
         ],
         id: 2
@@ -42,15 +50,19 @@ const data = [
         rowData: [
             {
                 id: 5,
-                name: 'Laundry',
-                iconUrl: '/rooms/laundry',
-                path: '/rooms/laundry'
+                name: 'Bathroom',
+                iconUrl: '/rooms/color/bath',
+                path: '/rooms/bathroom',
+                amount: 5,
+                unit: 'Devices'
             },
             {
                 id: 6,
-                name: 'Bathroom',
-                iconUrl: '/rooms/bath',
-                path: '/rooms/bathroom'
+                name: 'Garage',
+                iconUrl: '/rooms/color/garage',
+                path: '/rooms/garage',
+                amount: 5,
+                unit: 'Devices'
             }
         ],
         id: 3

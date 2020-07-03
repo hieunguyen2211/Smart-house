@@ -12,8 +12,10 @@ function CardSquare(props) {
                     fontSize: '14px'
                 }}
             >
-                <span style={{ fontWeight: 'bold', color: '#f63 ' }}>4</span>{' '}
-                devices
+                <span style={{ fontWeight: 'bold', color: '#0EBEF5 ' }}>
+                    {props.amount}
+                </span>{' '}
+                {props.unit}
             </p>
             <p style={{ color: 'black', fontSize: '18px' }}>{props.name}</p>
         </div>
@@ -29,11 +31,21 @@ function CardSquare(props) {
                 style={{ height: props.heightCard }}
             >
                 <div>
-                    <img
-                        src={urlIcon}
-                        className="card-item-content-icon"
-                        alt="icon"
-                    />
+                    {props.subTitle ? (
+                        <img
+                            src={urlIcon}
+                            className="card-item-content-icon"
+                            style={{ marginBottom: '1vh' }}
+                            alt="icon"
+                        />
+                    ) : (
+                        <img
+                            src={urlIcon}
+                            className="card-item-content-icon"
+                            alt="icon"
+                        />
+                    )}
+
                     {title}
                 </div>
             </div>

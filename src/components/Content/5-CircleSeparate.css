@@ -1,0 +1,118 @@
+.circle-5-segment {
+    position: relative;
+    padding: 0;
+    margin: 1em auto;
+    width: 40vh;
+    height: 40vh;
+    border-radius: 50%;
+    list-style: none;
+    overflow: hidden;
+}
+
+.circle-5-segment li {
+    overflow: hidden;
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 100%;
+    transform-origin: 0% 100%;
+    border: 4px solid white;
+}
+
+.segment-wrapper {
+    width: 200%;
+    height: 200%;
+}
+
+.circle-5-segment li:first-child {
+    transform: rotate(0deg) skewY(-18deg);
+}
+
+.circle-5-segment li:nth-child(2) {
+    transform: rotate(72deg) skewY(-18deg);
+}
+
+.circle-5-segment li:nth-child(3) {
+    transform: rotate(144deg) skewY(-18deg);
+}
+
+.circle-5-segment li:nth-child(4) {
+    transform: rotate(216deg) skewY(-18deg);
+}
+
+.circle-5-segment li:nth-child(5) {
+    transform: rotate(288deg) skewY(-18deg);
+}
+
+@media only screen and (device-width : 414px) and (device-height : 736px) and (-webkit-device-pixel-ratio : 3) {
+    .circle-5-segment-icon-fan {
+        top: 21vh !important;
+        left: 59vw !important;
+    }
+
+    .circle-5-segment-icon-light {
+        top: 35vh !important;
+        left: 67vw !important;
+    }
+
+    .circle-5-segment-icon-windows {
+        top: 45vh !important;
+        left: 45vw !important;
+    }
+
+    .circle-5-segment-icon-door {
+        top: 35vh !important;
+        left: 24vw !important;
+    }
+
+    .circle-5-segment-icon-curtains {
+        top: 21vh !important;
+        left: 32vw !important;
+    }
+}
+
+.circle-5-segment-icon-fan {
+    position: absolute;
+    z-index: 1;
+    top: 21vh;
+    left: 58vw;
+}
+
+.circle-5-segment-icon-light {
+    position: absolute;
+    z-index: 1;
+    top: 35vh;
+    left: 67vw;
+}
+
+.circle-5-segment-icon-windows {
+    position: absolute;
+    z-index: 1;
+    top: 44vh;
+    left: 44vw;
+}
+
+.circle-5-segment-icon-door {
+    position: absolute;
+    z-index: 1;
+    top: 34vh;
+    left: 22vw;
+}
+
+.circle-5-segment-icon-curtains {
+    position: absolute;
+    z-index: 1;
+    top: 21vh;
+    left: 31vw;
+}
+
+.circle-center {
+    position: absolute;
+    width: 20vw;
+    height: 20vw;
+    top: 28vh;
+    left: 40vw;
+    background: white;
+    border-radius: 50%;
+}

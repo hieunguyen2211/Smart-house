@@ -37,11 +37,12 @@
     align-items: center;
     justify-content: center;
     margin-right: 6vw;
+    position: relative;
 }
 
 .scrolling-wrapper .card-device-on {
     border-radius: 3%;
-    background: linear-gradient(-180deg, #f53d2d, #f63);
+    background: #0EBEF5;
     height: 14vh;
     width: 40vw;
     display: flex;
@@ -49,14 +50,17 @@
     align-items: center;
     justify-content: center;
     margin-right: 6vw;
+    position: relative;
 }
 
 .card-device-on span {
     color: white;
+    margin-top: 1vh;
 }
 
 .card-device-off span {
-    color: #f63;
+    color: #0EBEF5;
+    margin-top: 1vh;
 }
 
 .scrolling-wrapper::-webkit-scrollbar {
@@ -65,14 +69,15 @@
 
 .device-status-container {
     display: flex;
-    justify-content: flex-end;
-    width: 88%;
+    position: absolute;
+    top: 1vh;
+    right: 4vw;
 }
 
 .dot-on {
     height: 2vh;
     width: 2vh;
-    background-color: #09e801;
+    background-color: #0ab013;
     border: 2px solid white;
     border-radius: 50%;
     display: inline-block;
@@ -93,7 +98,7 @@
     position: fixed;
     width: 100%;
     top: 6vh;
-    height: 81vh;
+    height: 83vh;
     justify-content: space-between;
     align-items: center;
 }

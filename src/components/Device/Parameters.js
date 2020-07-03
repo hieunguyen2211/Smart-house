@@ -6,7 +6,11 @@ function Parameters(props) {
             {props.data.map(e => (
                 <div className="device-params-container" key={e.id}>
                     <p>{e.name}</p>
-                    <p>{`${e.value} ${e.unit}`}</p>
+                    {e.unit ? (
+                        <p>{`${e.value} ${e.unit}`}</p>
+                    ) : (
+                        <p>{e.value}</p>
+                    )}
                 </div>
             ))}
         </div>

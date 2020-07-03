@@ -1,65 +1,92 @@
 body {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 p {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 .ant-switch-checked {
-    background-color: #f63 !important;
+  background-color: #0ebef5 !important;
 }
 
 .ant-select-selection:hover {
-    border-color: #f63 !important;
-    box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
+  border-color: #0ebef5 !important;
+  box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
 }
 
 .ant-select-selection:focus {
-    border-color: #f63 !important;
-    box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
+  border-color: #0ebef5 !important;
+  box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
 }
 
 .ant-select-selection:active {
-    border-color: #f63 !important;
-    box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
+  border-color: #0ebef5 !important;
+  box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.4) !important;
 }
 
 .ant-input:focus {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
-.ant-calendar-picker-input {
-    font-size: 3vh !important;
-    border: none !important;
-    padding: 0 !important;
-    color: black !important;
-    border-bottom: 1px solid #f63 !important;
+.ant-time-picker-input {
+  font-size: 3vh !important;
+}
+
+.ant-time-picker-panel-input {
+  font-size: 3vh !important;
 }
 
 .page-container {
-    text-align: center;
-    background: #e9ebee;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  text-align: center;
+  background: #06294a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .page-content-wrapper {
-    position: fixed;
-    width: 100%;
-    top: 6vh;
-    height: 84vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  position: fixed;
+  width: 100%;
+  top: 11vh;
+  height: 79vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .flex-box {
-    display: flex;
-    justify-content: center;
-    align-self: center;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+a:hover {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+a:focus {
+  text-decoration: none;
+  color: black !important;
+}
+.ant-switch-checked {
+  background-color: #2ae971 !important;
+}
+
+.ant-modal-content {
+  background-color: #06294a !important;
+}
+
+.ant-input-group-addon {
+  background-color: #055680 !important;
+  border: #055680 !important;
+  color: white !important;
+}
+
+.ant-modal-body {
+  font-size: 3vh !important;
+  color: white;
 }

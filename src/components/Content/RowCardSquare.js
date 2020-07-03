@@ -10,6 +10,8 @@ function Row(props) {
             path={e.path}
             subTitle={props.subTitle}
             heightCard={props.heightCard}
+            amount={e.amount}
+            unit={e.unit}
         />
     ));
     return <div className="row-item-container">{listItem}</div>;

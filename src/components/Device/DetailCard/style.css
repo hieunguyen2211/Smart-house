@@ -1,0 +1,37 @@
+.device-detail-card {
+    display: flex;
+    justify-content: space-between;
+    width: 84vw;
+    background: linear-gradient(
+        90deg,
+        rgba(30, 61, 116, 1) 0%,
+        rgba(41, 81, 150, 1) 63%
+    );
+    padding: 3vh 5vw 3vh 5vw;
+    border-radius: 10px;
+    align-items: center;
+    color: white;
+    margin-top: 3vh;
+}
+
+.container-minimized {
+    padding: 1vh 5vw 1vh 5vw;
+}
+
+.device-detail-card > .device-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.device-header > .title {
+    text-transform: capitalize;
+}
+
+.device-header > .item-icon {
+    width: 6vw;
+    margin-right: 5vw;
+}
+
+.device-switch {
+    background: #0e394b;
+}

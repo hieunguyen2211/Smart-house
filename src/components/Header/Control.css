@@ -9,10 +9,8 @@
     font-size: 25px;
 }
 
-
 .control-header-content span {
     font-size: 22px;
-    font-weight: bold;
     color: white;
 }
 
@@ -20,9 +18,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(-180deg, #f53d2d, #f63);
+    /* background: linear-gradient(to right, #00d2ff, #3a7bd5); */
     position: fixed;
-    top: 0;
+    top: 2vh;
     width: 100%;
     height: 6vh;
 }

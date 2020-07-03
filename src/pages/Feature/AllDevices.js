@@ -10,13 +10,17 @@ const data = [
                 id: 1,
                 name: 'Light',
                 iconUrl: '/devices/color/light',
-                path: '/rooms/bedroom'
+                path: '/devices/light',
+                amount: 6,
+                unit: 'Rooms'
             },
             {
                 id: 2,
                 name: 'Fan',
                 iconUrl: '/devices/color/fan',
-                path: '/rooms/livingroom'
+                path: '/devices/fan',
+                amount: 6,
+                unit: 'Rooms'
             }
         ],
         id: 1
@@ -25,15 +29,19 @@ const data = [
         rowData: [
             {
                 id: 3,
-                name: 'Window',
+                name: 'Windows',
                 iconUrl: '/devices/color/window',
-                path: '/rooms/kitchen'
+                path: '/devices/windows',
+                amount: 6,
+                unit: 'Rooms'
             },
             {
                 id: 4,
-                name: 'Curtain',
+                name: 'Curtains',
                 iconUrl: '/devices/color/curtain',
-                path: '/rooms/diningroom'
+                path: '/devices/curtains',
+                amount: 6,
+                unit: 'Rooms'
             }
         ],
         id: 2
@@ -44,13 +52,17 @@ const data = [
                 id: 5,
                 name: 'Door',
                 iconUrl: '/devices/color/door',
-                path: '/rooms/laundry'
+                path: '/devices/door',
+                amount: 6,
+                unit: 'Rooms'
             },
             {
                 id: 6,
                 name: 'Camera',
                 iconUrl: '/devices/color/camera',
-                path: '/rooms/bathroom'
+                path: '/devices/camera',
+                amount: 6,
+                unit: 'Rooms'
             }
         ],
         id: 3

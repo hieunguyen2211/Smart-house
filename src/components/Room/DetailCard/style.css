@@ -1,0 +1,18 @@
+.room-detail-container {
+    margin-bottom: 4vh;
+}
+.room-detail-container > .title-section {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.room-detail-list-device {
+    margin-top: -1vh;
+}
+
+.title-section > .title {
+    text-transform: capitalize;
+    color: #96a4c5;
+    font-size: 14px;
+}

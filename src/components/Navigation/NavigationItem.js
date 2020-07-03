@@ -1,77 +1,81 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import * as iconAI from 'react-icons/ai';
-import * as iconFA from 'react-icons/fa';
-import './NavigationItem.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+    RedditOutlined,
+    HomeOutlined,
+    ControlOutlined,
+    SecurityScanOutlined,
+} from "@ant-design/icons";
+import "./NavigationItem.css";
 
 function NavigationItem(props) {
     const urlCurrent = window.location.pathname;
-    const urlNavigation = '/' + props.url;
+    const urlNavigation = "/" + props.url;
     const classContent =
         urlCurrent === urlNavigation
             ? {
-                  classIcon: 'navigation-item-icon-active',
-                  classTitle: 'navigation-item-title-active'
+                  classIcon: "navigation-item-icon-active",
+                  classTitle: "navigation-item-title-active",
               }
             : {
-                  classIcon: 'navigation-item-icon-disable',
-                  classTitle: 'navigation-item-title-disable'
+                  classIcon: "navigation-item-icon-disable",
+                  classTitle: "navigation-item-title-disable",
               };
 
-    let itemIconActive = '';
-    let itemIconDisable = '';
+    let itemIconActive = "";
+    let itemIconDisable = "";
     switch (props.type) {
-        case 'home':
+        case "home":
             itemIconActive = (
-                <iconAI.AiFillHome
+                <HomeOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />
             );
             itemIconDisable = (
-                <iconAI.AiOutlineHome
+                <HomeOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />
             );
             break;
-        case 'speech':
+        case "assistant":
             itemIconActive = (
-                <iconAI.AiFillAudio
+                <RedditOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />
             );
             itemIconDisable = (
-                <iconAI.AiOutlineAudio
+                <RedditOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />
             );
             break;
-        case 'profile':
+        case "device":
             itemIconActive = (
-                <iconFA.FaUserCircle
+                <ControlOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />
             );
             itemIconDisable = (
-                <iconFA.FaRegUserCircle
+                <ControlOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />
             );
             break;
-        case 'setting':
+        case "security":
             itemIconActive = (
-                <iconAI.AiFillSetting
+                <SecurityScanOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />
             );
             itemIconDisable = (
-                <iconAI.AiOutlineSetting
+                <SecurityScanOutlined
                     type={props.nameIcon}
                     className={classContent.classIcon}
                 />

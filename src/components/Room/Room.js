@@ -1,123 +1,252 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ControlHeader from '../Header/Control';
 import NavigationBar from '../Navigation/NavigationBar';
 import DeviceDetails from '../Device/Details';
+import Announcement from '../Modal/Announcement';
+import { getCurrentHumidity } from '../../firebase/paramsWeather/humidity';
+import { getCurrentTemperature } from '../../firebase/paramsWeather/temperature';
+import { getCurrentLed, updateStatusLed } from '../../firebase/devices/led';
 import './Room.css';
+
+import SyncLoader from 'react-spinners/SyncLoader';
 
 function Room(props) {
     const urlIconSelected =
         process.env.PUBLIC_URL + '/icons/devices/content/selected';
     const urlIconUnselected =
         process.env.PUBLIC_URL + '/icons/devices/content/unselected';
-
     const [deviceData, setDeviceData] = useState([
         {
             id: 1,
-            name: 'Air Conditioner',
+            name: 'Information',
             icon: {
-                selected: urlIconSelected + '/AirConditioner.svg',
-                unselected: urlIconUnselected + '/AirConditioner.svg'
+                selected: urlIconSelected + '/Information.svg',
+                unselected: urlIconUnselected + '/Information.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Temperature',
                     value: 30,
-                    unit: '°C'
+                    unit: '°C',
                 },
                 {
                     id: 2,
                     name: 'Humidity',
-                    value: 0.8,
-                    unit: '%'
-                }
+                    value: 50,
+                    unit: '%',
+                },
+                {
+                    id: 3,
+                    name: 'Gas Condition',
+                    value: true,
+                },
+                {
+                    id: 4,
+                    name: 'Pressure',
+                    value: 0.9,
+                    unit: 'Bar',
+                },
             ],
-            value: 20,
+            value: 0,
             status: false,
-            selected: true
         },
         {
             id: 2,
-            name: 'Light',
+            name: 'Fan',
             icon: {
-                selected: urlIconSelected + '/Light.svg',
-                unselected: urlIconUnselected + '/Light.svg'
+                selected: urlIconSelected + '/Fan.svg',
+                unselected: urlIconUnselected + '/Fan.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
                     value: 12.5,
-                    unit: 'Hrs'
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
                     value: 80,
-                    unit: 'W'
-                }
+                    unit: 'W',
+                },
             ],
-            status: true,
-            selected: false
+            value: 0,
+            status: false,
         },
         {
             id: 3,
-            name: 'Demo1',
+            name: 'Light',
             icon: {
                 selected: urlIconSelected + '/Light.svg',
-                unselected: urlIconUnselected + '/Light.svg'
+                unselected: urlIconUnselected + '/Light.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
-                    value: 12.5
+                    value: 12.5,
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
-                    value: 80
-                }
+                    value: 80,
+                    unit: 'W',
+                },
             ],
-            status: true,
-            selected: false
+            value: 1,
+            status: false,
         },
         {
             id: 4,
-            name: 'Demo2',
+            name: 'Windows',
             icon: {
-                selected: urlIconSelected + '/Light.svg',
-                unselected: urlIconUnselected + '/Light.svg'
+                selected: urlIconSelected + '/Windows.svg',
+                unselected: urlIconUnselected + '/Windows.svg',
             },
             data: [
                 {
                     id: 1,
                     name: 'Total working',
-                    value: 12.5
+                    value: 12.5,
+                    unit: 'Hrs',
                 },
                 {
                     id: 2,
                     name: 'Maximum Power',
-                    value: 80
-                }
+                    value: 80,
+                    unit: 'W',
+                },
             ],
+            value: 2,
             status: true,
-            selected: false
-        }
+        },
+        {
+            id: 5,
+            name: 'Door',
+            icon: {
+                selected: urlIconSelected + '/Door.svg',
+                unselected: urlIconUnselected + '/Door.svg',
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Total working',
+                    value: 12.5,
+                    unit: 'Hrs',
+                },
+                {
+                    id: 2,
+                    name: 'Maximum Power',
+                    value: 80,
+                    unit: 'W',
+                },
+            ],
+            value: 1,
+            status: true,
+        },
+        {
+            id: 6,
+            name: 'Curtains',
+            icon: {
+                selected: urlIconSelected + '/Curtains.svg',
+                unselected: urlIconUnselected + '/Curtains.svg',
+            },
+            data: [
+                {
+                    id: 1,
+                    name: 'Total working',
+                    value: 12.5,
+                    unit: 'Hrs',
+                },
+                {
+                    id: 2,
+                    name: 'Maximum Power',
+                    value: 80,
+                    unit: 'W',
+                },
+            ],
+            value: 3,
+            status: true,
+        },
     ]);
+    const [selectingDevice, setSelectingDevice] = useState([
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState('');
 
-    const handleSelectDevice = id => {
-        setDeviceData(deviceData =>
-            deviceData.map(e => {
-                if (e.id === id) e.selected = true;
-                else if (e.selected === true) e.selected = false;
+    useEffect(() => {
+        const fetchData = async () => {
+            const temperatureRead = await getCurrentTemperature();
+            const humidityRead = await getCurrentHumidity();
+            const ledRead = await getCurrentLed(props.roomName);
+            const newDeviceData = deviceData;
+            // newDeviceData[0].data[0].value = temperatureRead.value;
+            // newDeviceData[0].data[0].value = temperatureRead;
+            newDeviceData[0].data[1].value = humidityRead.value;
+            newDeviceData[2].status = ledRead.status === 1 ? true : false;
+            setDeviceData(newDeviceData);
+            setLoading(false);
+        };
+        fetchData();
+    }, [deviceData, props.roomName]);
+
+    const handleSelectDevice = (id) => {
+        setSelectingDevice((selectingDevice) =>
+            selectingDevice.map((e, index) => (index === id - 1 ? true : false))
+        );
+    };
+
+    const handleClickChangeStatus = () => {
+        setVisible(true);
+        const currentStatus = deviceData[2].status;
+        // currentStatus
+        //     ? setMessage('Turn off your light successfully.')
+        //     : setMessage('Turn on your light successfully.');
+        setMessage('Succeeded. Please check your device');
+        updateStatusLed(!currentStatus, props.roomName);
+        setDeviceData((deviceData) =>
+            deviceData.map((e) => {
+                if (e.id === 3) e.status = !currentStatus;
                 return e;
             })
         );
     };
 
-    return (
+    const handleToggleModal = () => {
+        setVisible(false);
+    };
+
+    return loading ? (
+        <div className="page-container" style={{ background: 'white' }}>
+            <ControlHeader
+                title={props.roomName}
+                path="/rooms"
+                colorText="white"
+            />
+            <div className="page-content-wrapper">
+                <SyncLoader size={20} color={'#3a7bd5'} loading={loading} />
+            </div>
+
+            <NavigationBar />
+        </div>
+    ) : (
         <div className="page-container">
+            <Announcement
+                visible={visible}
+                handleToggleModal={handleToggleModal}
+                styleMessage={{ color: 'green', fontSize: '3vh' }}
+                message={message}
+            />
             <ControlHeader
                 title={props.roomName}
                 path="/rooms"
@@ -126,57 +255,71 @@ function Room(props) {
             />
             <div className="room-content-container">
                 {deviceData.map(
-                    e =>
-                        e.selected && (
+                    (e) =>
+                        selectingDevice[e.id - 1] &&
+                        (e.name === 'Information' ? (
                             <DeviceDetails
-                                device={e.name}
-                                data={e.data}
+                                deviceName={e.name}
+                                informationData={e.data}
+                                totalData={deviceData}
                                 value={e.value}
                                 status={e.status}
                                 key={e.id}
+                                handleClickChangeStatus={
+                                    handleClickChangeStatus
+                                }
                             />
-                        )
+                        ) : (
+                            <DeviceDetails
+                                deviceName={e.name}
+                                informationData={e.data}
+                                value={e.value}
+                                status={e.status}
+                                key={e.id}
+                                handleClickChangeStatus={
+                                    handleClickChangeStatus
+                                }
+                            />
+                        ))
                 )}
                 <div className="scrolling-wrapper">
                     {deviceData &&
-                        deviceData.map(e => (
+                        deviceData.map((e) => (
                             <div
                                 onClick={() => handleSelectDevice(e.id)}
                                 key={e.id}
                             >
                                 <div
                                     className={
-                                        e.selected
+                                        selectingDevice[e.id - 1]
                                             ? 'card-device-on'
                                             : 'card-device-off'
                                     }
                                 >
-                                    <div className="device-status-container">
-                                        {e.status ? (
-                                            <span className="dot-on"></span>
-                                        ) : (
-                                            <span className="dot-off"></span>
-                                        )}
-                                    </div>
+                                    {e.name !== 'Information' && (
+                                        <div className="device-status-container">
+                                            {e.status ? (
+                                                <span className="dot-on"></span>
+                                            ) : (
+                                                <span className="dot-off"></span>
+                                            )}
+                                        </div>
+                                    )}
 
                                     <div
                                         style={{
                                             display: 'flex',
-                                            flexDirection: 'column'
+                                            flexDirection: 'column',
                                         }}
                                     >
                                         <img
                                             src={
-                                                e.selected
+                                                selectingDevice[e.id - 1]
                                                     ? e.icon.selected
                                                     : e.icon.unselected
                                             }
                                             className="card-item-content-icon"
                                             alt="icon"
-                                            style={{
-                                                height: '40px',
-                                                marginBottom: '0'
-                                            }}
                                         />
                                         <span>{e.name}</span>
                                     </div>
