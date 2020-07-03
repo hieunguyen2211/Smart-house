@@ -2,7 +2,9 @@
   "type": "module",
   "name": "smart-house",
   "version": "0.1.0",
-  "private": true,
+  "engines": {
+    "node": "12.18.0"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.1.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
