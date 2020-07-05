@@ -68,6 +68,7 @@ function Security() {
       const formData = new FormData();
       images.forEach((e) => formData.append('files[]', e, e.name));
       //console.log(formData.getAll('files[]'));
+      console.log(API_AI_URL);
       fetch(`${API_AI_URL}/recognize`, {
         method: 'POST',
         headers: {
