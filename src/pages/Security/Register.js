@@ -74,27 +74,16 @@ export default function Register() {
       })
         .then((res) => res.json())
         .then((res) => {
-          // if (res.code === 500) {
-          //     setMessage("Server Error. Try again");
-          //     setIsSucceeded(false);
-          // } else if (res.code === 200) {
-          //     if (
-          //         res.label === "Unknown" ||
-          //         res.label === undefined
-          //     ) {
-          //         setMessage("Unknown. Try again");
-          //         setIsSucceeded(false);
-          //     } else {
-          //         let name = res.label.toLowerCase();
-          //         const firstLetter = name.charAt(0).toUpperCase();
-          //         name = firstLetter + name.slice(1);
-          //         setMessage("Welcome Home, " + name);
-          //         setIsSucceeded(true);
-          //     }
-          // } else {
-          //     setMessage("Error. Try again");
-          //     setIsSucceeded(false);
-          // }
+          if (res.code === 500) {
+            setMessage('Server Error. Try again');
+            setIsSucceeded(false);
+          } else if (res.code === 200) {
+            setMessage('Register succeeded');
+            setIsSucceeded(true);
+          } else {
+            setMessage('Error. Try again');
+            setIsSucceeded(false);
+          }
           console.log(res);
         });
       setVisible(true);
@@ -103,17 +92,22 @@ export default function Register() {
       postData();
       setImages([]);
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, [images, loading, message]);
+  }, [images, loading, message, name]);
 
   const handleChangeName = (e) => {
     setName(e.target.value);
   };
 
+  const handleToggleModal = () => {
+    setVisible(false);
+  };
   return (
     <div className="page-container">
+      <Announcement
+        visible={visible}
+        handleToggleModal={handleToggleModal}
+        message={message}
+      />
       <ControlHeader title="security" path="/security" />
       <div className="page-content-wrapper">
         <div className="content-section">
