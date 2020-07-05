@@ -135,8 +135,10 @@ function Devices() {
   };
 
   useEffect(() => {
+    // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const postData = () => {
       fetch(API_CHATBOT_URL, {
+        mode: 'no-cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
