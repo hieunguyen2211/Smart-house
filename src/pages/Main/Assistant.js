@@ -140,7 +140,7 @@ function Devices() {
         method: 'POST',
         headers: {
           Accept: 'application/json',
-          // 'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
