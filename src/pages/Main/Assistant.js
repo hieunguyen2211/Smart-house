@@ -138,7 +138,6 @@ function Devices() {
     // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const postData = () => {
       fetch(API_CHATBOT_URL, {
-        mode: 'no-cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -156,6 +155,7 @@ function Devices() {
           if (res[0].text.length > 0) {
             handleCommand(res[0].text);
           }
+          console.log(res);
         })
         .catch((error) => console.log(error));
     };
