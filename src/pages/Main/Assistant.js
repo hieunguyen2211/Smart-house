@@ -140,7 +140,6 @@ function Devices() {
       fetch(API_CHATBOT_URL, {
         method: 'POST',
         headers: {
-          Accept: 'application/json',
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
         },
@@ -155,7 +154,6 @@ function Devices() {
           if (res[0].text.length > 0) {
             handleCommand(res[0].text);
           }
-          console.log(res);
         })
         .catch((error) => console.log(error));
     };
