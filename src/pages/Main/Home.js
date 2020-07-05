@@ -226,7 +226,7 @@ export default function Home() {
                   />
                   {sensorData[1].value} °C
                 </div>
-                {sensorData[2].value > 2 ? (
+                {sensorData[2].value > 5 ? (
                   <Tag color="#f50">Dangerous</Tag>
                 ) : (
                   <Tag color="#2FAD4A">Fresh</Tag>
